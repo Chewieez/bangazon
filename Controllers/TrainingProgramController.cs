@@ -125,7 +125,7 @@ namespace BangazonAPI.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            TrainingProgram trainingProgram = _context.TrainingProgram.Single(t => t.TrainingProgramId == id);
+            TrainingProgram trainingProgram = _context.TrainingProgram.Single(t => t.TrainingProgramId == id && t.StartDate > DateTime.Now);
 
             if (trainingProgram == null)
             {
