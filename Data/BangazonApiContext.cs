@@ -20,6 +20,8 @@ namespace BangazonAPI.Data
         public DbSet<ProductCategory> ProductCategory { get; set; }
         public DbSet<TrainingEmployee> TrainingEmployee { get; set; }
         public DbSet<TrainingProgram> TrainingProgram { get; set; }
+        public DbSet<Computer> Computer { get; set; }
+        public DbSet<ComputerEmployee> ComputerEmployee { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
