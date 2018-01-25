@@ -133,7 +133,7 @@ namespace BangazonAPI.Migrations
 
                     b.Property<int>("CustomerId");
 
-                    b.Property<int>("PaymentTypeId");
+                    b.Property<int?>("PaymentTypeId");
 
                     b.HasKey("OrderId");
 

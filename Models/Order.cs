@@ -9,7 +9,7 @@ namespace BangazonAPI.Models
         [Key]
         public int OrderId { get; set; }
         
-        public int PaymentTypeId { get; set; }
+        public int? PaymentTypeId { get; set; }
 
         [Required]
         public int CustomerId { get; set; }

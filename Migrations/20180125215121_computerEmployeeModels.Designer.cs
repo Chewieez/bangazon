@@ -11,7 +11,7 @@ using System;
 namespace BangazonAPI.Migrations
 {
     [DbContext(typeof(BangazonAPIContext))]
-    [Migration("20180125214143_computerEmployeeModels")]
+    [Migration("20180125215121_computerEmployeeModels")]
     partial class computerEmployeeModels
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -134,7 +134,7 @@ namespace BangazonAPI.Migrations
 
                     b.Property<int>("CustomerId");
 
-                    b.Property<int>("PaymentTypeId");
+                    b.Property<int?>("PaymentTypeId");
 
                     b.HasKey("OrderId");
 

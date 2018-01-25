@@ -91,7 +91,7 @@ namespace BangazonAPI.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     CompletedDate = table.Column<DateTime>(nullable: true),
                     CustomerId = table.Column<int>(nullable: false),
-                    PaymentTypeId = table.Column<int>(nullable: false)
+                    PaymentTypeId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
