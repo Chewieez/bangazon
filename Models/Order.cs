@@ -9,14 +9,14 @@ namespace BangazonAPI.Models
         [Key]
         public int OrderId { get; set; }
         
-        public int PaymentTypeId { get; set; }
+        public int? PaymentTypeId { get; set; }
 
         [Required]
         public int CustomerId { get; set; }
         public Customer Customer {get; set;}
             
         [DataType(DataType.Date)]
-        public DateTime CompletedDate { get; set; }
+        public DateTime? CompletedDate { get; set; }
 
         IEnumerable <OrderProduct> OrderProducts;
 

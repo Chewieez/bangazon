@@ -4,10 +4,26 @@ using System.Collections.Generic;
 
 namespace BangazonAPI.Migrations
 {
-    public partial class Initial : Migration
+    public partial class computerEmployeeModels : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Computer",
+                columns: table => new
+                {
+                    ComputerId = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    DecommissionDate = table.Column<DateTime>(nullable: true),
+                    Name = table.Column<string>(maxLength: 55, nullable: false),
+                    PurchaseDate = table.Column<DateTime>(nullable: false),
+                    SerialNumber = table.Column<string>(maxLength: 55, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Computer", x => x.ComputerId);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Customer",
                 columns: table => new
@@ -73,9 +89,9 @@ namespace BangazonAPI.Migrations
                 {
                     OrderId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    CompletedDate = table.Column<DateTime>(nullable: false),
+                    CompletedDate = table.Column<DateTime>(nullable: true),
                     CustomerId = table.Column<int>(nullable: false),
-                    PaymentTypeId = table.Column<int>(nullable: false)
+                    PaymentTypeId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -163,6 +179,34 @@ namespace BangazonAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ComputerEmployee",
+                columns: table => new
+                {
+                    ComputerEmployeeId = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ComputerId = table.Column<int>(nullable: false),
+                    DateAssigned = table.Column<DateTime>(nullable: false),
+                    DateRemoved = table.Column<DateTime>(nullable: true),
+                    EmployeeId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ComputerEmployee", x => x.ComputerEmployeeId);
+                    table.ForeignKey(
+                        name: "FK_ComputerEmployee_Computer_ComputerId",
+                        column: x => x.ComputerId,
+                        principalTable: "Computer",
+                        principalColumn: "ComputerId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ComputerEmployee_Employee_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employee",
+                        principalColumn: "EmployeeId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "TrainingEmployee",
                 columns: table => new
                 {
@@ -215,6 +259,16 @@ namespace BangazonAPI.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_ComputerEmployee_ComputerId",
+                table: "ComputerEmployee",
+                column: "ComputerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ComputerEmployee_EmployeeId",
+                table: "ComputerEmployee",
+                column: "EmployeeId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Employee_DepartmentId",
                 table: "Employee",
                 column: "DepartmentId");
@@ -263,6 +317,9 @@ namespace BangazonAPI.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "ComputerEmployee");
+
+            migrationBuilder.DropTable(
                 name: "OrderProduct");
 
             migrationBuilder.DropTable(
@@ -270,6 +327,9 @@ namespace BangazonAPI.Migrations
 
             migrationBuilder.DropTable(
                 name: "TrainingEmployee");
+
+            migrationBuilder.DropTable(
+                name: "Computer");
 
             migrationBuilder.DropTable(
                 name: "Order");

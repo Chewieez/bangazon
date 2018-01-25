@@ -11,14 +11,58 @@ using System;
 namespace BangazonAPI.Migrations
 {
     [DbContext(typeof(BangazonAPIContext))]
-    [Migration("20180125170739_Initial")]
-    partial class Initial
+    [Migration("20180125215121_computerEmployeeModels")]
+    partial class computerEmployeeModels
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.0.1-rtm-125");
+
+            modelBuilder.Entity("BangazonAPI.Models.Computer", b =>
+                {
+                    b.Property<int>("ComputerId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime?>("DecommissionDate");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(55);
+
+                    b.Property<DateTime>("PurchaseDate");
+
+                    b.Property<string>("SerialNumber")
+                        .IsRequired()
+                        .HasMaxLength(55);
+
+                    b.HasKey("ComputerId");
+
+                    b.ToTable("Computer");
+                });
+
+            modelBuilder.Entity("BangazonAPI.Models.ComputerEmployee", b =>
+                {
+                    b.Property<int>("ComputerEmployeeId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("ComputerId");
+
+                    b.Property<DateTime>("DateAssigned");
+
+                    b.Property<DateTime?>("DateRemoved");
+
+                    b.Property<int>("EmployeeId");
+
+                    b.HasKey("ComputerEmployeeId");
+
+                    b.HasIndex("ComputerId");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.ToTable("ComputerEmployee");
+                });
 
             modelBuilder.Entity("BangazonAPI.Models.Customer", b =>
                 {
@@ -86,11 +130,11 @@ namespace BangazonAPI.Migrations
                     b.Property<int>("OrderId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("CompletedDate");
+                    b.Property<DateTime?>("CompletedDate");
 
                     b.Property<int>("CustomerId");
 
-                    b.Property<int>("PaymentTypeId");
+                    b.Property<int?>("PaymentTypeId");
 
                     b.HasKey("OrderId");
 
@@ -215,6 +259,19 @@ namespace BangazonAPI.Migrations
                     b.HasKey("TrainingProgramId");
 
                     b.ToTable("TrainingProgram");
+                });
+
+            modelBuilder.Entity("BangazonAPI.Models.ComputerEmployee", b =>
+                {
+                    b.HasOne("BangazonAPI.Models.Computer", "Computer")
+                        .WithMany()
+                        .HasForeignKey("ComputerId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("BangazonAPI.Models.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("BangazonAPI.Models.Employee", b =>
