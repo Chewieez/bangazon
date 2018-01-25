@@ -11,8 +11,8 @@ using System;
 namespace BangazonAPI.Migrations
 {
     [DbContext(typeof(BangazonAPIContext))]
-    [Migration("20180125161846_secondMigration")]
-    partial class secondMigration
+    [Migration("20180125170739_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -22,7 +22,7 @@ namespace BangazonAPI.Migrations
 
             modelBuilder.Entity("BangazonAPI.Models.Customer", b =>
                 {
-                    b.Property<int>("EmployeeId")
+                    b.Property<int>("CustomerId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("CreationDate");
@@ -37,7 +37,7 @@ namespace BangazonAPI.Migrations
                         .IsRequired()
                         .HasMaxLength(55);
 
-                    b.HasKey("EmployeeId");
+                    b.HasKey("CustomerId");
 
                     b.ToTable("Customer");
                 });
