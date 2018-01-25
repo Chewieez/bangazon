@@ -15,7 +15,7 @@ namespace BangazonAPI.Models
 
         [Required]
         public int CustomerId {get; set;}
-
+        public Customer Customer { get; set; }
 
 
         [Required]
@@ -30,6 +30,7 @@ namespace BangazonAPI.Models
         [Required]
         public int Quantity { get; set; }
 
+        IEnumerable <OrderProduct> OrderProducts;
 
     }
 }
