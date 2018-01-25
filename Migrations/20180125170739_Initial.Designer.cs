@@ -11,8 +11,8 @@ using System;
 namespace BangazonAPI.Migrations
 {
     [DbContext(typeof(BangazonAPIContext))]
-    [Migration("20180125164438_CustomerModelFix")]
-    partial class CustomerModelFix
+    [Migration("20180125170739_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
