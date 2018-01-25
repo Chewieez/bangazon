@@ -25,6 +25,8 @@ namespace BangazonAPI.Models
         public DateTime LastLoginDate { get; set; }
 
         IEnumerable <Order> Orders;
+        IEnumerable <PaymentType> PaymentTypes;
+        IEnumerable <Product> Products;
 
     }
 }

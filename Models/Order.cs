@@ -18,5 +18,8 @@ namespace BangazonAPI.Models
         [DataType(DataType.Date)]
         public DateTime CompletedDate { get; set; }
 
+        IEnumerable <OrderProduct> OrderProducts;
+
+
     }
 }
