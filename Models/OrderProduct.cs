@@ -8,7 +8,5 @@ namespace BangazonAPI.Models
     {
         [Key]
         public int OrderProductId { get; set; }
-
-        IEnumerable<OrderProduct> OrderProducts;
     }
 }

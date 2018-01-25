@@ -15,6 +15,5 @@ namespace BangazonAPI.Models
 
         [Required]
         public int AccountNumber { get; set; }
-        IEnumerable<PaymentType> PaymentTypes;
     }
 }
