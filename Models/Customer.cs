@@ -10,8 +10,10 @@ namespace BangazonAPI.Models
         public int EmployeeId { get; set; }
 
         [Required]
+        [StringLength(55)]
         public string FirstName { get; set; }
         [Required]
+        [StringLength(55)]
         public string LastName { get; set; }
         
         [Required]

@@ -15,7 +15,6 @@ namespace BangazonAPI.Models
         public int CustomerId { get; set; }
         public Customer Customer {get; set;}
             
-        [Required]
         [DataType(DataType.Date)]
         public DateTime CompletedDate { get; set; }
 
