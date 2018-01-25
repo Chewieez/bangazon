@@ -13,7 +13,6 @@ namespace BangazonAPI.Models
     [DataType(DataType.Date)]
     public DateTime DateAssigned { get; set; }
    
-    [Required]
     [DataType(DataType.Date)]
     public DateTime DateRemoved { get; set; }
 
