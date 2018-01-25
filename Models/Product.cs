@@ -13,6 +13,7 @@ namespace BangazonAPI.Models
         public int ProductCategoryId {get; set;}
         public ProductCategory ProductCategory {get; set;}
 
+        [Required]
         public int CustomerId {get; set;}
 
 
