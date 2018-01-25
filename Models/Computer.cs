@@ -22,7 +22,7 @@ namespace BangazonAPI.Models
     public DateTime PurchaseDate { get; set; }
    
     [DataType(DataType.Date)]
-    public DateTime DecommissionDate { get; set; }
+    public DateTime? DecommissionDate { get; set; }
 
     IEnumerable<ComputerEmployee> ComputerEmployees;
   }

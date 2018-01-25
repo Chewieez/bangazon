@@ -16,7 +16,7 @@ namespace BangazonAPI.Models
         public Customer Customer {get; set;}
             
         [DataType(DataType.Date)]
-        public DateTime CompletedDate { get; set; }
+        public DateTime? CompletedDate { get; set; }
 
         IEnumerable <OrderProduct> OrderProducts;
 
