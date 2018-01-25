@@ -7,7 +7,7 @@ namespace BangazonAPI.Models
     public class Customer
     {
         [Key]
-        public int EmployeeId { get; set; }
+        public int CustomerId { get; set; }
 
         [Required]
         [StringLength(55)]
