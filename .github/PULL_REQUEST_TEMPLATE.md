@@ -11,7 +11,7 @@ TITLE [Link]()
 Outline the steps to test
 
 ```sh
-git fetch
+git fetch --all
 git checkout <feature_branch>
 
 ```
