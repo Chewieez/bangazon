@@ -121,11 +121,12 @@ namespace BangazonAPI.Controllers
 
         }
 
+        // should we remove the ability to delete records from the ComputerEmployee table
         // DELETE api/values/5
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            ComputerEmployee computerEmployee = _context.ComputerEmployee.Single(t => t.ComputerEmployeeId == id && t.StartDate > DateTime.Now);
+            ComputerEmployee computerEmployee = _context.ComputerEmployee.Single(t => t.ComputerEmployeeId == id);
 
             if (computerEmployee == null)
             {
