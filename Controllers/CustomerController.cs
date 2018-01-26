@@ -20,44 +20,43 @@ namespace BangazonAPI.Controllers
             _context = ctx;
         }
 
-        // GET api/values
+        // GET api/[controller]/
+        // GET api/[controller]/?active=false
         [HttpGet]
-        public IActionResult Get(string active)
+        public IActionResult Get(bool? active)
         {
-            // if the search for active
+            // if GET includes the 'active' parameter
             if (active != null) {
-                 
-                switch (active) {
-                    case "true": {
-                        var customer = _context.Customer.Where(c => 
-                            _context.Order.Any(o => o.CustomerId == c.CustomerId));
-
-                        return Ok(customer);
-                    }
-
-                    case "false": {
-                        
-                        var customer = _context.Customer.Where(c => 
-                            !_context.Order.Any(o => o.CustomerId == c.CustomerId));
-
-                        return Ok(customer);
-                    }
-
-                    default: {
-                        return NotFound();
-                    }
-                }
                 
+                if (active == true) {
+                    // return customers that have matching customer id's in the order table
+                    var customer = _context.Customer.Where(c => 
+                        _context.Order.Any(o => o.CustomerId == c.CustomerId));
 
+                    return Ok(customer);
+
+                } else if (active == false)  {
+                    // return customers without matching customer id's in the order table
+                    var customer = _context.Customer.Where(c => 
+                        !_context.Order.Any(o => o.CustomerId == c.CustomerId));
+
+                    return Ok(customer);
+
+                } else {
+                    // if the input was neither "true" or "false"
+                    return NotFound();
+                }
 
             } else {
-                 var customer = _context.Customer.ToList();
+
+                var customer = _context.Customer.ToList();
 
                 if (customer == null)
                 {
                     return NotFound();
                 }
-                    return Ok(customer);
+                
+                return Ok(customer);
             }
 
 
