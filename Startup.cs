@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -25,11 +26,20 @@ namespace BangazonAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Add CORS framework
+            services.AddCors(options =>
+            {
+                // define a CORS policy
+                options.AddPolicy("AllowOnlyTheseOrigins",
+                    builder => builder.WithOrigins("http://bangazon.com"));
+            });
+
             services.AddMvc();
             string path = System.Environment.GetEnvironmentVariable("BANGAZON_API_DB");
             var connection = $"Filename={path}";
             Console.WriteLine($"connection = {connection}");
             services.AddDbContext<BangazonAPIContext>(options => options.UseSqlite(connection));
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,6 +49,9 @@ namespace BangazonAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            // Use the CORS policy you created in ConfigureServices
+            app.UseCors("AllowOnlyTheseOrigins");
 
             app.UseMvc();
         }
