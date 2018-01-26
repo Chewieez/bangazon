@@ -125,20 +125,20 @@ namespace BangazonAPI.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            Computer order = _context.Computer.Single(t => t.ComputerId == id && t.PurchaseDate > DateTime.Now);
+            Order order = _context.Order.Single(t => t.OrderId == id);
 
             if (order == null)
             {
                 return NotFound();
             }
-            _context.Computer.Remove(order);
+            _context.Order.Remove(order);
             _context.SaveChanges();
             return Ok(order);
         }
 
-        private bool ComputerExists(int orderId)
+        private bool OrderExists(int orderId)
         {
-            return _context.Computer.Any(g => g.ComputerId == orderId);
+            return _context.Order.Any(g => g.OrderId == orderId);
         }
     }
 }
