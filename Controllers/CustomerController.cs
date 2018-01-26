@@ -22,21 +22,50 @@ namespace BangazonAPI.Controllers
 
         // GET api/values
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get(string active)
         {
-            
-            var customer = _context.Customer.ToList();
+            // if the search for active
+            if (active != null) {
+                 
+                switch (active) {
+                    case "true": {
+                        var customer = _context.Customer.Where(c => 
+                            _context.Order.Any(o => o.CustomerId == c.CustomerId));
 
-            if (customer == null)
-            {
-                return NotFound();
+                        return Ok(customer);
+                    }
+
+                    case "false": {
+                        
+                        var customer = _context.Customer.Where(c => 
+                            !_context.Order.Any(o => o.CustomerId == c.CustomerId));
+
+                        return Ok(customer);
+                    }
+
+                    default: {
+                        return NotFound();
+                    }
+                }
+                
+
+
+            } else {
+                 var customer = _context.Customer.ToList();
+
+                if (customer == null)
+                {
+                    return NotFound();
+                }
+                    return Ok(customer);
             }
-            return Ok(customer);
+
 
         }
 
-        // GET api/values/5
-        [HttpGet("{id}", Name="GetSingleCustomer")]
+
+        // GET api/[controller]/5
+        [HttpGet("{id:int}", Name="GetSingleCustomer")]
         public IActionResult Get(int id)
         {
             if (!ModelState.IsValid)
