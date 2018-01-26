@@ -22,21 +22,49 @@ namespace BangazonAPI.Controllers
 
         // GET api/values
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get(string active)
         {
-            
-            var customer = _context.Customer.ToList();
+            // if the search for active
+            if (active != null) {
+                 
+                switch (active) {
+                    case "true": {
+                        var customer = _context.Customer.Where(c => 
+                            _context.Order.Any(o => o.CustomerId == c.CustomerId));
 
-            if (customer == null)
-            {
-                return NotFound();
+                        return Ok(customer);
+                    }
+
+                    case "false": {
+                        
+                        var customer = _context.Customer.Where(c => 
+                            !_context.Order.Any(o => o.CustomerId == c.CustomerId));
+
+                        return Ok(customer);
+                    }
+
+                    default: {
+                        return NotFound();
+                    }
+                }
+                
+
+
+            } else {
+                 var customer = _context.Customer.ToList();
+
+                if (customer == null)
+                {
+                    return NotFound();
+                }
+                    return Ok(customer);
             }
-            return Ok(customer);
+
 
         }
 
 
-        // GET api/values/5
+        // GET api/[controller]/5
         [HttpGet("{id:int}", Name="GetSingleCustomer")]
         public IActionResult Get(int id)
         {
@@ -62,30 +90,6 @@ namespace BangazonAPI.Controllers
             }
         }
 
-        [HttpGet("{active:bool}",Name="GetActiveCustomers")]
-        public IActionResult GetActive(bool active=true)
-        {
-            
-            // // var customer = _context.Customer.ToList();
-            // var customer = from c in _context.Customer
-            //     join o in _context.Order on c.CustomerId equals o.CustomerId into gj
-            //     from subOrder in gj.DefaultIfEmpty()
-            //     select new { c.FirstName, c.LastName };
-
-            // if (customer == null)
-            // {
-            //     return NotFound();
-            // }
-
-            string color = "Yellow";
-            if (active) {
-               color = "Blue";
-            } 
-
-            var obj = new {name = color, active = active};
-            return Ok(obj);
-
-        }
         // POST api/values
         [HttpPost]
         public IActionResult Post([FromBody]Customer customer)
