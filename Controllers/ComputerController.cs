@@ -18,6 +18,16 @@ namespace BangazonAPI.Controllers
          public ComputerController(BangazonAPIContext ctx)
         {
             _context = ctx;
+
+            if(_context.Computer.Count() == 0)
+			{
+				_context.Computer.Add(new Computer { Name = "Dell Precision 5520", SerialNumber =  "54023", PurchaseDate = DateTime.Now });
+				_context.Computer.Add(new Computer { Name = "Microsoft Surface Laptop", SerialNumber =  "11202", PurchaseDate = DateTime.Now });
+                _context.Computer.Add(new Computer { Name = "Lenovo 720s", SerialNumber =  "98203", PurchaseDate = DateTime.Now });
+                _context.Computer.Add(new Computer { Name = "Dell Inspiron 7000", SerialNumber =  "33315", PurchaseDate = DateTime.Now });
+                _context.Computer.Add(new Computer { Name = "MacBook Pro", SerialNumber =  "10675", PurchaseDate = DateTime.Now });
+				_context.SaveChanges();
+			}
         }
 
         // GET api/values
@@ -125,7 +135,7 @@ namespace BangazonAPI.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            Computer computer = _context.Computer.Single(t => t.ComputerId == id && t.PurchaseDate > DateTime.Now);
+            Computer computer = _context.Computer.Single(t => t.ComputerId == id);
 
             if (computer == null)
             {
