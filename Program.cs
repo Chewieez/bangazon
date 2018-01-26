@@ -16,10 +16,16 @@ namespace BangazonAPI
     {
         public static void Main(string[] args)
         {
-            // BuildWebHost(args).Run();
-
+            // DO NOT REMOVE THE FOLLOWING LINE
             var host = BuildWebHost(args);
 
+            /*********************************************************************/
+            /* Comment out or remove the Seed Block to stop seeding the database */
+            /*********************************************************************/
+
+            /********/
+            /* Seed */
+            /********/
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
@@ -34,7 +40,11 @@ namespace BangazonAPI
                     logger.LogError(ex, "An error occurred seeding the DB.");
                 }
             }
+            /************/
+            /* End Seed */
+            /************/
 
+            // DO NOT REMOVE THE FOLLOWING LINE
             host.Run();
 
         }

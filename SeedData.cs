@@ -1,3 +1,8 @@
+
+/*****************************************************************/
+/* If seeded data is no longer required this file can be deleted */
+/*****************************************************************/
+
 using System;
 using System.Linq;
 using BangazonAPI.Data;
@@ -14,6 +19,7 @@ namespace BangazonAPI
 			
 			context.Database.EnsureCreated();
 			
+			// Seeding Computer Table
 			if (!context.Computer.Any())
 			{
 				context.Computer.Add(new Computer { Name = "Microsoft Surface Laptop", SerialNumber =  "11202", PurchaseDate = DateTime.Now });
@@ -23,6 +29,7 @@ namespace BangazonAPI
 				context.SaveChanges();
 			}
 
+			// Seeding TrainingProgram Table
 			if (!context.TrainingProgram.Any())
 			{
 				context.TrainingProgram.Add(new TrainingProgram { Name = "AngualarJS Crash Course", StartDate =  DateTime.Now, EndDate = DateTime.Now, MaxAttendance = 35 });
@@ -32,6 +39,7 @@ namespace BangazonAPI
 				context.SaveChanges();
 			}
 
+			// Seeding Department Table
 			if (!context.Department.Any())
 			{
 				context.Department.Add(new Department { Name = "IT", ExpenseBudget =  899000 });
@@ -41,9 +49,10 @@ namespace BangazonAPI
 				context.SaveChanges();
 			}
 
+			// Seeding Employee Table
 			if (!context.Employee.Any())
 			{
-				// IT department
+				// IT Department
 				var deptEntityQueryable = from b in context.Department 
                    where b.Name.Equals("IT") 
                    select b.DepartmentId;
@@ -57,7 +66,7 @@ namespace BangazonAPI
 				context.Employee.Add(new Employee { DepartmentId = deptId, FirstName = "Dan", LastName = "Williams", StartDate = DateTime.Now, Supervisor = true });
 				context.Employee.Add(new Employee { DepartmentId = deptId, FirstName = "Ben", LastName = "Taylor", StartDate = DateTime.Now, Supervisor = false });
 
-				// Admin
+				// Admin Department
 				deptEntityQueryable = from b in context.Department 
                    where b.Name.Equals("Admin") 
                    select b.DepartmentId;
@@ -70,7 +79,7 @@ namespace BangazonAPI
 				context.Employee.Add(new Employee { DepartmentId = deptId, FirstName = "Henry", LastName = "Mall", StartDate = DateTime.Now, Supervisor = false });
 				context.Employee.Add(new Employee { DepartmentId = deptId, FirstName = "George", LastName = "Davidson", StartDate = DateTime.Now, Supervisor = false });
 
-				// Engineering
+				// Engineering Deparment
 				deptEntityQueryable = from b in context.Department 
                    where b.Name.Equals("Engineering") 
                    select b.DepartmentId;
@@ -83,7 +92,7 @@ namespace BangazonAPI
 				context.Employee.Add(new Employee { DepartmentId = deptId, FirstName = "Teresa", LastName = "Evans", StartDate = DateTime.Now, Supervisor = false });
 				context.Employee.Add(new Employee { DepartmentId = deptId, FirstName = "Susan", LastName = "Lee", StartDate = DateTime.Now, Supervisor = false });
 
-				// Human Resources
+				// Human Resources Department
 				deptEntityQueryable = from b in context.Department 
                    where b.Name.Equals("Human Resources") 
                    select b.DepartmentId;
@@ -98,6 +107,16 @@ namespace BangazonAPI
 
 				context.SaveChanges();
 			}
+
+			// Seeding ComputerEmployee Table
+			// if (!context.ComputerEmployee.Any())
+			// {
+			// 	context.ComputerEmployee.Add(new ComputerEmployee { Name = "IT", ExpenseBudget =  899000 });
+            //     context.ComputerEmployee.Add(new ComputerEmployee { Name = "Admin", ExpenseBudget =  500000 });
+            //     context.ComputerEmployee.Add(new ComputerEmployee { Name = "Human Resources", ExpenseBudget =  650000 });
+            //     context.ComputerEmployee.Add(new ComputerEmployee { Name = "Engineering", ExpenseBudget =  1200000 });
+			// 	context.SaveChanges();
+			// }
 		}
 	}
 }
