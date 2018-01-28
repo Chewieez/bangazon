@@ -467,7 +467,7 @@ namespace BangazonAPI
 				context.Customer.Add(new Customer { FirstName = "Stacy", LastName = "Gauger", CreationDate = Convert.ToDateTime("06/21/2017"), LastLoginDate = Convert.ToDateTime("01/24/2018") });
 				context.Customer.Add(new Customer { FirstName = "Stephan", LastName = "Adams", CreationDate = Convert.ToDateTime("07/11/2017"), LastLoginDate = Convert.ToDateTime("01/26/2018") });
 				context.Customer.Add(new Customer { FirstName = "Belle", LastName = "Martin", CreationDate = Convert.ToDateTime("07/06/2017"), LastLoginDate = Convert.ToDateTime("01/25/2018") });
-				context.Customer.Add(new Customer { FirstName = "Jeraldine", LastName = "Chenard", CreationDate = Convert.ToDateTime("06/23/2016"), LastLoginDate = Convert.ToDateTime("01/27/2018") });
+				context.Customer.Add(new Customer { FirstName = "Jeraldine", LastName = "Chenard", CreationDate = Convert.ToDateTime("06/23/2017"), LastLoginDate = Convert.ToDateTime("01/27/2018") });
 				// context.Customer.Add(new Customer { FirstName = "Mila", LastName = "Lone", CreationDate = Convert.ToDateTime("07/15/2017"), LastLoginDate = Convert.ToDateTime("01/27/2018") });
                 
 				// context.Customer.Add(new Customer { FirstName = "Samara", LastName = "Mello", CreationDate = Convert.ToDateTime("06/26/2017"), LastLoginDate = Convert.ToDateTime("12/27/2017") });
@@ -587,44 +587,130 @@ namespace BangazonAPI
                    where c.LastName.Equals("Gauger") && c.FirstName.Equals("Stacy")
                    select c.CustomerId).Single();
 
-				int PaymentTypeId = (from pt in context.PaymentType 
-                   where pt.Name.Equals("PayPal")
+				int paymentTypeId = (from pt in context.PaymentType 
+                   where pt.CustomerId.Equals(customerId) && pt.Name.Equals("PayPal")
                    select pt.CustomerId).Single();
 
-				context.Order.Add(new Order {  });
-				context.Order.Add(new Order {  });
+				context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("07/17/2017"), CustomerId = customerId, PaymentTypeId = paymentTypeId });
+				context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("08/21/2017"), CustomerId = customerId, PaymentTypeId = paymentTypeId });
+				context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("10/29/2017"), CustomerId = customerId, PaymentTypeId = paymentTypeId });
+				context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("12/04/2017"), CustomerId = customerId, PaymentTypeId = paymentTypeId });
+				context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("12/12/2017"), CustomerId = customerId, PaymentTypeId = paymentTypeId });
+				context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("01/12/2017"), CustomerId = customerId, PaymentTypeId = paymentTypeId });
 
 				customerId = (from c in context.Customer 
                    where c.LastName.Equals("Adams") && c.FirstName.Equals("Stephan")
                    select c.CustomerId).Single();
 
-				PaymentTypeId = (from pt in context.PaymentType 
-                   where pt.Name.Equals("PayPal")
+				paymentTypeId = (from pt in context.PaymentType 
+                   where pt.CustomerId.Equals(customerId) && pt.Name.Equals("PayPal")
                    select pt.CustomerId).Single();
 
-				context.Order.Add(new Order {  });
+				context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("09/02/2017"), CustomerId = customerId, PaymentTypeId = paymentTypeId });
+				context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("11/21/2017"), CustomerId = customerId, PaymentTypeId = paymentTypeId });
 
 				customerId = (from c in context.Customer 
                    where c.LastName.Equals("Martin") && c.FirstName.Equals("Belle")
                    select c.CustomerId).Single();
 
-				PaymentTypeId = (from pt in context.PaymentType 
-                   where pt.Name.Equals("PayPal")
+				paymentTypeId = (from pt in context.PaymentType 
+                   where pt.CustomerId.Equals(customerId) && pt.Name.Equals("PayPal")
                    select pt.CustomerId).Single();
 
-				context.Order.Add(new Order {  });
-				context.Order.Add(new Order {  });
+				context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("11/19/2017"), CustomerId = customerId, PaymentTypeId = paymentTypeId });
+				context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("11/23/2017"), CustomerId = customerId, PaymentTypeId = paymentTypeId });
+				context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("12/09/2017"), CustomerId = customerId, PaymentTypeId = paymentTypeId });
+				context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("12/10/2017"), CustomerId = customerId, PaymentTypeId = paymentTypeId });
+				context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("12/11/2017"), CustomerId = customerId, PaymentTypeId = paymentTypeId });
+				context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("12/14/2017"), CustomerId = customerId, PaymentTypeId = paymentTypeId });
 
 				customerId = (from c in context.Customer 
                    where c.LastName.Equals("Chenard") && c.FirstName.Equals("Jeraldine")
                    select c.CustomerId).Single();
 
-				PaymentTypeId = (from pt in context.PaymentType 
-                   where pt.Name.Equals("PayPal")
+				paymentTypeId = (from pt in context.PaymentType 
+                   where pt.CustomerId.Equals(customerId) && pt.Name.Equals("PayPal")
                    select pt.CustomerId).Single();
 
-				context.Order.Add(new Order {  });
-				context.Order.Add(new Order {  });
+				context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("12/09/2017"), CustomerId = customerId, PaymentTypeId = paymentTypeId });
+				context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("12/11/2017"), CustomerId = customerId, PaymentTypeId = paymentTypeId });
+				context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("01/05/2018"), CustomerId = customerId, PaymentTypeId = paymentTypeId });
+
+				context.SaveChanges();
+			}
+
+			/******************************/
+			/* Seeding OrderProduct Table */
+			/******************************/
+			if (!context.OrderProduct.Any())
+			{
+				int customerId = (from c in context.Customer 
+                   where c.LastName.Equals("Gauger") && c.FirstName.Equals("Stacy")
+                   select c.CustomerId).Single();
+				
+				int orderId = (from o in context.Order 
+                   where o.CompletedDate.Equals(Convert.ToDateTime("07/17/2017")) && o.CustomerId.Equals(customerId)
+                   select o.OrderId).Single();
+
+				int productId = (from p in context.Product 
+                   where p.Name.Equals("Knit Hat")
+                   select p.ProductId).Single();
+
+				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = productId });
+
+				productId = (from p in context.Product 
+                   where p.Name.Equals("Knit Scarf")
+                   select p.ProductId).Single();
+
+				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = productId });
+
+				productId = (from p in context.Product 
+                   where p.Name.Equals("Knit Mittens")
+                   select p.ProductId).Single();
+
+				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = productId });
+
+				// customerId = (from c in context.Customer 
+                //    where c.LastName.Equals("Gauger") && c.FirstName.Equals("Stacy")
+                //    select c.CustomerId).Single();
+				
+				// orderId = (from o in context.Order
+                //    where o.CompletedDate.Equals(Convert.ToDateTime("07/17/2017")) && o.CustomerId.Equals(customerId)
+                //    select o.OrderId).Single();
+
+				// productId = (from p in context.Product 
+                //    where p.Name.Equals("Knit Hat")
+                //    select p.CustomerId).Single();
+
+				// context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("09/02/2017"), CustomerId = customerId, PaymentTypeId = paymentTypeId });
+				// context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("11/21/2017"), CustomerId = customerId, PaymentTypeId = paymentTypeId });
+
+				// customerId = (from c in context.Customer 
+                //    where c.LastName.Equals("Martin") && c.FirstName.Equals("Belle")
+                //    select c.CustomerId).Single();
+
+				// paymentTypeId = (from pt in context.PaymentType 
+                //    where pt.Name.Equals("PayPal")
+                //    select pt.CustomerId).Single();
+
+				// context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("11/19/2017"), CustomerId = customerId, PaymentTypeId = paymentTypeId });
+				// context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("11/23/2017"), CustomerId = customerId, PaymentTypeId = paymentTypeId });
+				// context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("12/09/2017"), CustomerId = customerId, PaymentTypeId = paymentTypeId });
+				// context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("12/10/2017"), CustomerId = customerId, PaymentTypeId = paymentTypeId });
+				// context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("12/11/2017"), CustomerId = customerId, PaymentTypeId = paymentTypeId });
+				// context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("12/14/2017"), CustomerId = customerId, PaymentTypeId = paymentTypeId });
+
+				// customerId = (from c in context.Customer 
+                //    where c.LastName.Equals("Chenard") && c.FirstName.Equals("Jeraldine")
+                //    select c.CustomerId).Single();
+
+				// paymentTypeId = (from pt in context.PaymentType 
+                //    where pt.Name.Equals("PayPal")
+                //    select pt.CustomerId).Single();
+
+				// context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("12/09/2017"), CustomerId = customerId, PaymentTypeId = paymentTypeId });
+				// context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("12/11/2017"), CustomerId = customerId, PaymentTypeId = paymentTypeId });
+				// context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("01/05/2018"), CustomerId = customerId, PaymentTypeId = paymentTypeId });
 
 				context.SaveChanges();
 			}
