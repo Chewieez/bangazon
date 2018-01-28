@@ -644,74 +644,243 @@ namespace BangazonAPI
 			/******************************/
 			if (!context.OrderProduct.Any())
 			{
-				int customerId = (from c in context.Customer 
+				/***********************/
+				/* Stacy Gauger Orders */
+				/***********************/
+				int stacyGaugerCustomerId = (from c in context.Customer 
                    where c.LastName.Equals("Gauger") && c.FirstName.Equals("Stacy")
                    select c.CustomerId).Single();
 				
-				int orderId = (from o in context.Order 
-                   where o.CompletedDate.Equals(Convert.ToDateTime("07/17/2017")) && o.CustomerId.Equals(customerId)
-                   select o.OrderId).Single();
-
-				int productId = (from p in context.Product 
+				int hatProductId = (from p in context.Product 
                    where p.Name.Equals("Knit Hat")
                    select p.ProductId).Single();
-
-				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = productId });
-
-				productId = (from p in context.Product 
+				
+				int scarfProductId = (from p in context.Product 
                    where p.Name.Equals("Knit Scarf")
                    select p.ProductId).Single();
-
-				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = productId });
-
-				productId = (from p in context.Product 
+				
+				int mittensProductId = (from p in context.Product 
                    where p.Name.Equals("Knit Mittens")
                    select p.ProductId).Single();
-
-				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = productId });
-
-				// customerId = (from c in context.Customer 
-                //    where c.LastName.Equals("Gauger") && c.FirstName.Equals("Stacy")
-                //    select c.CustomerId).Single();
 				
-				// orderId = (from o in context.Order
-                //    where o.CompletedDate.Equals(Convert.ToDateTime("07/17/2017")) && o.CustomerId.Equals(customerId)
-                //    select o.OrderId).Single();
+				/*************/
+				/* Order One */
+				/*************/				
+				int orderId = (from o in context.Order 
+                   where o.CompletedDate.Equals(Convert.ToDateTime("07/17/2017")) && o.CustomerId.Equals(stacyGaugerCustomerId)
+                   select o.OrderId).Single();
 
-				// productId = (from p in context.Product 
-                //    where p.Name.Equals("Knit Hat")
-                //    select p.CustomerId).Single();
+				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = hatProductId });
+				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = scarfProductId });
+				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = mittensProductId });
+				
+				/*************/
+				/* Order Two */
+				/*************/
+				orderId = (from o in context.Order 
+                   where o.CompletedDate.Equals(Convert.ToDateTime("08/21/2017")) && o.CustomerId.Equals(stacyGaugerCustomerId)
+                   select o.OrderId).Single();
 
-				// context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("09/02/2017"), CustomerId = customerId, PaymentTypeId = paymentTypeId });
-				// context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("11/21/2017"), CustomerId = customerId, PaymentTypeId = paymentTypeId });
+				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = hatProductId });
+				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = scarfProductId });
+				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = mittensProductId });
 
-				// customerId = (from c in context.Customer 
-                //    where c.LastName.Equals("Martin") && c.FirstName.Equals("Belle")
-                //    select c.CustomerId).Single();
+				/***************/
+				/* Order Three */
+				/***************/
+				orderId = (from o in context.Order 
+                   where o.CompletedDate.Equals(Convert.ToDateTime("10/29/2017")) && o.CustomerId.Equals(stacyGaugerCustomerId)
+                   select o.OrderId).Single();
 
-				// paymentTypeId = (from pt in context.PaymentType 
-                //    where pt.Name.Equals("PayPal")
-                //    select pt.CustomerId).Single();
+				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = hatProductId });
+				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = scarfProductId });
+				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = mittensProductId });
 
-				// context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("11/19/2017"), CustomerId = customerId, PaymentTypeId = paymentTypeId });
-				// context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("11/23/2017"), CustomerId = customerId, PaymentTypeId = paymentTypeId });
-				// context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("12/09/2017"), CustomerId = customerId, PaymentTypeId = paymentTypeId });
-				// context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("12/10/2017"), CustomerId = customerId, PaymentTypeId = paymentTypeId });
-				// context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("12/11/2017"), CustomerId = customerId, PaymentTypeId = paymentTypeId });
-				// context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("12/14/2017"), CustomerId = customerId, PaymentTypeId = paymentTypeId });
+				/**************/
+				/* Order Four */
+				/**************/
+				orderId = (from o in context.Order 
+                   where o.CompletedDate.Equals(Convert.ToDateTime("12/04/2017")) && o.CustomerId.Equals(stacyGaugerCustomerId)
+                   select o.OrderId).Single();
 
-				// customerId = (from c in context.Customer 
-                //    where c.LastName.Equals("Chenard") && c.FirstName.Equals("Jeraldine")
-                //    select c.CustomerId).Single();
+				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = hatProductId });
+				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = scarfProductId });
+				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = mittensProductId });
 
-				// paymentTypeId = (from pt in context.PaymentType 
-                //    where pt.Name.Equals("PayPal")
-                //    select pt.CustomerId).Single();
+				/**************/
+				/* Order Five */
+				/**************/
+				orderId = (from o in context.Order 
+                   where o.CompletedDate.Equals(Convert.ToDateTime("12/12/2017")) && o.CustomerId.Equals(stacyGaugerCustomerId)
+                   select o.OrderId).Single();
 
-				// context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("12/09/2017"), CustomerId = customerId, PaymentTypeId = paymentTypeId });
-				// context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("12/11/2017"), CustomerId = customerId, PaymentTypeId = paymentTypeId });
-				// context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("01/05/2018"), CustomerId = customerId, PaymentTypeId = paymentTypeId });
+				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = hatProductId });
+				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = scarfProductId });
+				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = mittensProductId });
 
+				/*************/
+				/* Order Six */
+				/*************/
+				orderId = (from o in context.Order 
+                   where o.CompletedDate.Equals(Convert.ToDateTime("01/12/2017")) && o.CustomerId.Equals(stacyGaugerCustomerId)
+                   select o.OrderId).Single();
+
+				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = hatProductId });
+				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = scarfProductId });
+				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = mittensProductId });
+
+				/************************/
+				/* Stephan Adams Orders */
+				/************************/
+				int stephanAdamsCustomerId = (from c in context.Customer 
+                   where c.LastName.Equals("Adams") && c.FirstName.Equals("Stephan")
+                   select c.CustomerId).Single();
+				
+				int sunsetPaintingProductId = (from p in context.Product 
+                   where p.Name.Equals("Sunset Painting")
+                   select p.ProductId).Single();
+				
+				int parisCafePaintingProductId = (from p in context.Product 
+                   where p.Name.Equals("Paris Cafe Painting")
+                   select p.ProductId).Single();
+				
+				/*************/
+				/* Order One */
+				/*************/				
+				orderId = (from o in context.Order 
+                   where o.CompletedDate.Equals(Convert.ToDateTime("09/02/2017")) && o.CustomerId.Equals(stephanAdamsCustomerId)
+                   select o.OrderId).Single();
+
+				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = parisCafePaintingProductId });
+
+				/*************/
+				/* Order Two */
+				/*************/
+				orderId = (from o in context.Order 
+                   where o.CompletedDate.Equals(Convert.ToDateTime("11/21/2017")) && o.CustomerId.Equals(stephanAdamsCustomerId)
+                   select o.OrderId).Single();
+
+				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = sunsetPaintingProductId });
+
+				/***********************/
+				/* Belle Martin Orders */
+				/***********************/
+				int belleMartinCustomerId = (from c in context.Customer 
+                   where c.LastName.Equals("Martin") && c.FirstName.Equals("Belle")
+                   select c.CustomerId).Single();
+				
+				int beadedBraceletProductId = (from p in context.Product 
+                   where p.Name.Equals("Beaded Bracelet")
+                   select p.ProductId).Single();
+				
+				int charmBraceletProductId = (from p in context.Product 
+                   where p.Name.Equals("Charm Bracelet")
+                   select p.ProductId).Single();
+
+				/*************/
+				/* Order One */
+				/*************/
+				orderId = (from o in context.Order 
+                   where o.CompletedDate.Equals(Convert.ToDateTime("11/19/2017")) && o.CustomerId.Equals(belleMartinCustomerId)
+                   select o.OrderId).Single();
+
+				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = charmBraceletProductId });
+				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = charmBraceletProductId });
+				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = charmBraceletProductId });
+				
+				/*************/
+				/* Order Two */
+				/*************/
+				orderId = (from o in context.Order 
+                   where o.CompletedDate.Equals(Convert.ToDateTime("11/23/2017")) && o.CustomerId.Equals(belleMartinCustomerId)
+                   select o.OrderId).Single();
+
+				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = charmBraceletProductId });
+
+				/***************/
+				/* Order Three */
+				/***************/
+				orderId = (from o in context.Order 
+                   where o.CompletedDate.Equals(Convert.ToDateTime("12/09/2017")) && o.CustomerId.Equals(belleMartinCustomerId)
+                   select o.OrderId).Single();
+
+				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = charmBraceletProductId });
+				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = beadedBraceletProductId });
+
+				/**************/
+				/* Order Four */
+				/**************/
+				orderId = (from o in context.Order 
+                   where o.CompletedDate.Equals(Convert.ToDateTime("12/10/2017")) && o.CustomerId.Equals(belleMartinCustomerId)
+                   select o.OrderId).Single();
+
+				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = charmBraceletProductId });
+				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = charmBraceletProductId });
+				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = charmBraceletProductId });
+				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = beadedBraceletProductId });
+				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = beadedBraceletProductId });
+				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = beadedBraceletProductId });
+
+				/**************/
+				/* Order Five */
+				/**************/
+				orderId = (from o in context.Order 
+                   where o.CompletedDate.Equals(Convert.ToDateTime("12/11/2017")) && o.CustomerId.Equals(belleMartinCustomerId)
+                   select o.OrderId).Single();
+
+				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = charmBraceletProductId });
+				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = beadedBraceletProductId });				
+
+				/*************/
+				/* Order Six */
+				/*************/
+				orderId = (from o in context.Order 
+                   where o.CompletedDate.Equals(Convert.ToDateTime("12/14/2017")) && o.CustomerId.Equals(belleMartinCustomerId)
+                   select o.OrderId).Single();
+
+				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = charmBraceletProductId });
+				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = charmBraceletProductId });
+				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = beadedBraceletProductId });
+				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = beadedBraceletProductId });
+
+				/****************************/
+				/* Jeraldine Chenard Orders */
+				/****************************/
+				int jeraldineChenardCustomerId = (from c in context.Customer 
+                   where c.LastName.Equals("Chenard") && c.FirstName.Equals("Jeraldine")
+                   select c.CustomerId).Single();
+				
+				int quiltProductId = (from p in context.Product 
+                   where p.Name.Equals("Handmade Quilt")
+                   select p.ProductId).Single();
+				
+				/*************/
+				/* Order One */
+				/*************/				
+				orderId = (from o in context.Order 
+                   where o.CompletedDate.Equals(Convert.ToDateTime("12/09/2017")) && o.CustomerId.Equals(jeraldineChenardCustomerId)
+                   select o.OrderId).Single();
+
+				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = quiltProductId });
+
+				/*************/
+				/* Order Two */
+				/*************/
+				orderId = (from o in context.Order 
+                   where o.CompletedDate.Equals(Convert.ToDateTime("12/11/2017")) && o.CustomerId.Equals(jeraldineChenardCustomerId)
+                   select o.OrderId).Single();
+
+				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = quiltProductId });
+
+				/***************/
+				/* Order Three */
+				/***************/
+				orderId = (from o in context.Order 
+                   where o.CompletedDate.Equals(Convert.ToDateTime("01/05/2018")) && o.CustomerId.Equals(jeraldineChenardCustomerId)
+                   select o.OrderId).Single();
+
+				context.OrderProduct.Add(new OrderProduct { OrderId = orderId, ProductId = quiltProductId });
+				
 				context.SaveChanges();
 			}
 		}
