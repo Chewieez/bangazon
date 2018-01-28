@@ -25,7 +25,8 @@ namespace BangazonAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc()
+            .AddJsonOptions(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             string path = System.Environment.GetEnvironmentVariable("BANGAZON_API_DB");
             var connection = $"Filename={path}";
             Console.WriteLine($"connection = {connection}");

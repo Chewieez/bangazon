@@ -15,21 +15,21 @@ namespace BangazonAPI.Controllers
     {
         private readonly BangazonAPIContext _context;
 
-         public OrderController(BangazonAPIContext ctx)
+        public OrderController(BangazonAPIContext ctx)
         {
             _context = ctx;
 
-            if(_context.Order.Count() == 0)
-			{
+            if (_context.Order.Count() == 0)
+            {
                 _context.SaveChanges();
-			}
+            }
         }
 
-        // GET api/values
+        // GET api/orders
         [HttpGet]
         public IActionResult Get()
         {
-            
+
             var order = _context.Order.ToList();
 
             if (order == null)
@@ -40,8 +40,8 @@ namespace BangazonAPI.Controllers
 
         }
 
-        // GET api/values/5
-        [HttpGet("{id}", Name="GetSingleOrder")]
+        // GET api/single order with products
+        [HttpGet("{id}", Name = "GetSingleOrderWithProducts")]
         public IActionResult Get(int id)
         {
             if (!ModelState.IsValid)
@@ -51,7 +51,43 @@ namespace BangazonAPI.Controllers
 
             try
             {
-                Order order = _context.Order.Single(t => t.OrderId == id);
+                // var order = _context.Order.Where(o => o.OrderId == id)
+
+                var productList = _context
+                .OrderProduct
+                .Where(o => o.OrderId == id)
+                .Select(o => o.Product).ToList();
+                // .Select(o => o.Product).ToList();
+
+                // foreach (var p in productList)
+                // {
+                //     Console.WriteLine(p.Name);
+                //     Console.WriteLine(p.Price);
+                //     Console.WriteLine(p.Quantity);
+                //     Console.WriteLine(p.ProductId);
+                // }
+                // .Select(o => o.Product);
+                
+
+                var order = _context
+                .Order
+                .Where(o => o.OrderId == id)
+                .Include("OrderProduct.Product")
+                .Select(o => new Order()
+                {
+                    OrderId = o.OrderId,
+                    CustomerId = o.CustomerId,
+                    PaymentTypeId = o.PaymentTypeId,
+                    OrderProducts = productList
+                });                
+                // .Include("Order");
+                // .Select(o =>o new Order(){
+                //     OrderId = id,
+                //     PaymentTypeId = o.PaymentTypeId,
+                //     CustomerId = o.CustomerId,
+                //     CompletedDate = o.CompletedDate
+                //     // OrderProducts = o.Product
+                // });                         
 
                 if (order == null)
                 {
