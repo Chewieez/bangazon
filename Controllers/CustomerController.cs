@@ -34,13 +34,20 @@ namespace BangazonAPI.Controllers
             _context = ctx;
         }
 
+
         /*
-            Author: Greg Lawrence - initial creation
-            URL: GET api/employee
+            Author: Krys Mathis building on Greg Lawrence's code
+            URL-1: GET api/customer/
+            URL-2: GET api/customer/?active=false
             Description:
-            This method handles GET requests for the employee resource. 
-        */
-        // GET api/[controller]/?active=false
+            This method handles GET requests for the customer resource. When 
+            using the optional paramater a list of customers that either 
+            have orders:
+                /api/customer/?active=true - customers that have placed orders
+                /api/customer/?active=false - customers without orders
+         */
+ 
+
         [HttpGet]
         public IActionResult Get(bool? active)
         {
