@@ -51,27 +51,47 @@ namespace BangazonAPI.Controllers
 
             try
             {
-                var order = _context.Order.Single(o => o.OrderId == id);                
-                var products = _context.Product.Where(p => _context.OrderProduct.Where(op => op.OrderId == id).Any(prod => p.ProductId == prod.ProductId)).Select(p => new {
-                    ProductId = p.ProductId,
-                    Name = p.Name,
-                    Price = p.Price,
-                    Quantity = p.Quantity
-                });    
+
+                // Author: Dre Randaci
+                // API GET request for a single order and all of it's associated products
+                // Example respose:
+                    // {
+                    //     "orderId": 1,
+                    //     "customerId": 1,
+                    //     "paymentTypeId": 1,
+                    //     "products": [
+                    //     {
+                    //         "productId": 1,
+                    //         "name": "Knit Hat",
+                    //         "price": 25,
+                    //         "quantity": 2
+                    //     },
+                    //     {
+                    //         "productId": 2,
+                    //         "name": "Knit Scarf",
+                    //         "price": 25,
+                    //         "quantity": 4
+                    //     }
+                    // } 
+
+                var order = _context.Order.Where(o => o.OrderId == id).Select(o => new {
+                    OrderId = o.OrderId,
+                    CustomerId = o.CustomerId,
+                    PaymentTypeId = o.PaymentTypeId,
+                    Products = o.OrderProducts.Select(op => new {
+                        ProductId = op.Product.ProductId,
+                        Name = op.Product.Name,
+                        Price = op.Product.Price,
+                        Quantity = op.Product.Quantity
+                    }) 
+                });                
 
                 if (order == null)
                 {
                     return NotFound();
                 }
 
-                return Ok(
-                    new {
-                        OrderId = id,
-                        CustomerId = order.CustomerId,
-                        PaymentTypeId = order.PaymentTypeId,
-                        Products = products
-                    }
-                );
+                return Ok(order);
             }
             catch (System.InvalidOperationException ex)
             {
