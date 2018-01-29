@@ -128,6 +128,9 @@ namespace BangazonAPI.Controllers
             URL: POST api/customer
             Description:
             This method handles POST requests to create a single customer. 
+            When executing the POST request, do not
+            include the CustomerId in the body of the request. The database will
+            assign a unique CustomerId.
         */
         [HttpPost]
         public IActionResult Post([FromBody]Customer customer)

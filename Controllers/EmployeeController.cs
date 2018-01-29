@@ -46,7 +46,7 @@ namespace BangazonAPI.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            // variable to hold list of employees
+            // get the list of employees from database and store in variable
             var employee = _context.Employee.ToList();
 
             // error handling to send a Not Found return if there are no employees.
@@ -96,7 +96,10 @@ namespace BangazonAPI.Controllers
             Author: Greg Lawrence
             URL: POST api/employee
             Description:
-            This method handles POST requests to create a single employee. 
+            This method handles POST requests to create a single employee.
+            When executing the POST request, do not
+            include the EmployeeId in the body of the request. The database will
+            assign a unique EmployeeId. 
         */
         [HttpPost]
         public IActionResult Post([FromBody]Employee employee)
