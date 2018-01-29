@@ -96,12 +96,12 @@ namespace BangazonAPI.Controllers
 
          /*
             Author: Krys Mathis
-            URL: POST api/product/
+            URL: POST api/TrainingProgram/
             Description:
             This method handles post requests, which adds a
             record to the database. When executing the POST request, do not
             include the TrainingProgramId in the body of the request. The database will
-            assign a uniqure id value.
+            assign a unique id value.
 
             Example POST body:
             {  name: 'AngualarJS Course',
@@ -122,7 +122,7 @@ namespace BangazonAPI.Controllers
         {
             /*
                 This method will extract the key/value pairs from the JSON
-                object that is posted, and create a new instance of the Child
+                object that is posted, and create a new instance of the TrainingProgram
                 model class, with the corresponding properties set.
                 If any of the validations fail, such as length of string values,
                 if a value is required, etc., then the API will respond that

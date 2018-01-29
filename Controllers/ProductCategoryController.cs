@@ -98,9 +98,9 @@ namespace BangazonAPI.Controllers
         {
            /*
                 Model validation works differently here, since there
-                is a complex type being detected with ([FromBody] Child child).
+                is a complex type being detected with ([FromBody] ProductCategory productCategory).
                 This method will extract the key/value pairs from the JSON
-                object that is posted, and create a new instance of the Child
+                object that is posted, and create a new instance of the ProductCategory
                 model class, with the corresponding properties set.
                 If any of the validations fail, such as length of string values,
                 if a value is required, etc., then the API will respond that
@@ -116,11 +116,11 @@ namespace BangazonAPI.Controllers
 
             try
             {
+                // Commit the newly created product category to the database
                 _context.SaveChanges();
             }
             catch (DbUpdateException)
             {
-                // Commit the newly created product category to the database
                 if (ProductCategoryExists(productCategory.ProductCategoryId))
                 {
                     // if the product category already exists
@@ -133,9 +133,9 @@ namespace BangazonAPI.Controllers
             }
 
             /*
-                The CreatedAtRoute method will return the newly created child in the
+                The CreatedAtRoute method will return the newly created ProductCategory in the
                 body of the response, and the Location meta-data header will contain
-                the URL for the new child resource
+                the URL for the new ProductCategory resource
                 To see this run this from command line:
                     curl --header "Content-Type: application/json" -s -X POST -D - --data '{ name: 'Jewelry Accessories & More' }' http://localhost:5000/api/productcategory
                 You will see this response:
@@ -195,9 +195,9 @@ namespace BangazonAPI.Controllers
                 }
             }
             /*
-                The CreatedAtRoute method will return the newly created child in the
+                The CreatedAtRoute method will return the newly created ProductCategory in the
                 body of the response, and the Location meta-data header will contain
-                the URL for the new child resource
+                the URL for the new ProductCategory resource
             */
                 return CreatedAtRoute("GetSingleProductCategory", new { id = productCategory.ProductCategoryId }, productCategory);
 

@@ -115,7 +115,7 @@ namespace BangazonAPI.Controllers
             This method handles post requests, which adds a
             record to the database. When executing the POST request, do not
             include the productId in the body of the request. The database will
-            assign a uniqure ProductId.
+            assign a unique ProductId.
 
             Example POST body:
             {   
@@ -145,7 +145,7 @@ namespace BangazonAPI.Controllers
         {
             /*
                 This method will extract the key/value pairs from the JSON
-                object that is posted, and create a new instance of the Child
+                object that is posted, and create a new instance of the Product
                 model class, with the corresponding properties set.
                 If any of the validations fail, such as length of string values,
                 if a value is required, etc., then the API will respond that
@@ -174,6 +174,11 @@ namespace BangazonAPI.Controllers
                     throw;
                 }
             }
+            /*
+                The CreatedAtRoute method will return the newly created Product in the
+                body of the response, and the Location meta-data header will contain
+                the URL for the new Product resource
+            */
             return CreatedAtRoute("GetSingleProduct", new { id = product.ProductId }, product);
         }
 
@@ -223,9 +228,9 @@ namespace BangazonAPI.Controllers
                 }
             }
             /*
-                The CreatedAtRoute method will return the newly created child in the
+                The CreatedAtRoute method will return the newly created Product in the
                 body of the response, and the Location meta-data header will contain
-                the URL for the new child resource
+                the URL for the new Product resource
             */
             return CreatedAtRoute("GetSingleProduct", new { id = product.ProductId }, product);
 
