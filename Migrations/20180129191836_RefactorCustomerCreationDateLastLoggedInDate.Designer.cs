@@ -11,8 +11,8 @@ using System;
 namespace BangazonAPI.Migrations
 {
     [DbContext(typeof(BangazonAPIContext))]
-    [Migration("20180125215121_computerEmployeeModels")]
-    partial class computerEmployeeModels
+    [Migration("20180129191836_RefactorCustomerCreationDateLastLoggedInDate")]
+    partial class RefactorCustomerCreationDateLastLoggedInDate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -69,13 +69,13 @@ namespace BangazonAPI.Migrations
                     b.Property<int>("CustomerId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("CreationDate");
+                    b.Property<DateTime?>("CreationDate");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(55);
 
-                    b.Property<DateTime>("LastLoginDate");
+                    b.Property<DateTime?>("LastLoginDate");
 
                     b.Property<string>("LastName")
                         .IsRequired()

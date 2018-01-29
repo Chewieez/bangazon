@@ -15,7 +15,7 @@ namespace BangazonAPI.Controllers
     {
         private readonly BangazonAPIContext _context;
 
-         public OrderController(BangazonAPIContext ctx)
+        public OrderController(BangazonAPIContext ctx)
         {
             _context = ctx;
         }
@@ -59,21 +59,7 @@ namespace BangazonAPI.Controllers
 
         }
 
-        /*
-            Author: Jason Figueroa
-            URL: GET api/order/{id}
-            Description:
-            Returns a specific order based on OrderId
-            Example GET response for "/api/order/1":
-            {
-                "orderId": 1,
-                "paymentTypeId": 1,
-                "customerId": 1,
-                "customer": null,
-                "completedDate": "2017-07-17T00:00:00"
-            }
-        */
-        [HttpGet("{id}", Name="GetSingleOrder")]
+        [HttpGet("{id}", Name = "GetSingleOrder")]
         public IActionResult Get(int id)
         {
             /*
@@ -87,8 +73,44 @@ namespace BangazonAPI.Controllers
 
             try
             {
-                // from the BangazonAPIContext object, retrieve the a single order record
-                Order order = _context.Order.Single(t => t.OrderId == id);
+                // Author: Dre Randaci
+                // API GET request for a single order and all of it's associated products
+                // Example respose:
+                    // {
+                    //     "orderId": 1,
+                    //     "customerId": 1,
+                    //     "paymentTypeId": 1,
+                    //     "products": [
+                    //     {
+                    //         "productId": 1,
+                    //         "name": "Knit Hat",
+                    //         "price": 25,
+                    //         "quantity": 2
+                    //     },
+                    //     {
+                    //         "productId": 2,
+                    //         "name": "Knit Scarf",
+                    //         "price": 25,
+                    //         "quantity": 4
+                    //     }
+                    // } 
+
+                var order = 
+                // Query for a single order
+                _context.Order.Where(o => o.OrderId == id)
+                // Create an anonymous object
+                .Select(o => new {
+                    OrderId = o.OrderId,
+                    CustomerId = o.CustomerId,
+                    PaymentTypeId = o.PaymentTypeId,
+                    // Traverse the joiner table and return the products associated by creating another anonymous object
+                    Products = o.OrderProducts.Select(op => new {
+                        ProductId = op.Product.ProductId,
+                        Name = op.Product.Name,
+                        Price = op.Product.Price,
+                        Quantity = op.Product.Quantity
+                    }) 
+                });                
 
                 if (order == null)
                 {

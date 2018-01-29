@@ -8,13 +8,13 @@ namespace BangazonAPI.Models
     {
         [Key]
         public int ProductId { get; set; }
-        
-        [Required]
-        public int ProductCategoryId {get; set;}
-        public ProductCategory ProductCategory {get; set;}
 
         [Required]
-        public int CustomerId {get; set;}
+        public int ProductCategoryId { get; set; }
+        public ProductCategory ProductCategory { get; set; }
+
+        [Required]
+        public int CustomerId { get; set; }
         public Customer Customer { get; set; }
 
 
@@ -23,14 +23,13 @@ namespace BangazonAPI.Models
 
         [Required]
         public double Price { get; set; }
-        
+
         [Required]
         public string Description { get; set; }
-        
+
         [Required]
         public int Quantity { get; set; }
 
-        IEnumerable <OrderProduct> OrderProducts;
-
+        public virtual ICollection<OrderProduct> OrderProducts { get; set; }
     }
 }
