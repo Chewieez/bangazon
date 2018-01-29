@@ -12,6 +12,8 @@ using Microsoft.Extensions.Options;
 using BangazonAPI.Data;
 using Microsoft.EntityFrameworkCore;
 
+// CORS setup by Greg Lawrence
+
 namespace BangazonAPI
 {
     public class Startup
@@ -29,12 +31,14 @@ namespace BangazonAPI
             // Add CORS framework
             services.AddCors(options =>
             {
-                // define a CORS policy
+                // define a CORS policy to use
+                // this policy will restrict api usage to just users on http://bangazon.com
                 options.AddPolicy("AllowOnlyTheseOrigins",
                     builder => builder.WithOrigins("http://bangazon.com"));
             });
 
             services.AddMvc();
+            // define path to database
             string path = System.Environment.GetEnvironmentVariable("BANGAZON_API_DB");
             var connection = $"Filename={path}";
             Console.WriteLine($"connection = {connection}");
