@@ -97,9 +97,14 @@ namespace BangazonAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
+            
+            // Add a timestamp to customer CreationDate for todays date. 
+            customer.CreationDate = DateTime.Now;
 
+            // save customer to context file
             _context.Customer.Add(customer);
 
+            // try to save the data to database and catch any errors
             try
             {
                 _context.SaveChanges();
