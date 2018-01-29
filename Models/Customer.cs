@@ -22,9 +22,9 @@ namespace BangazonAPI.Models
         [DataType(DataType.Date)]
         public DateTime? LastLoginDate { get; set; }
 
-        IEnumerable <Order> Orders;
-        IEnumerable <PaymentType> PaymentTypes;
-        IEnumerable <Product> Products;
+        public virtual ICollection <Order> Orders { get; set; }
+        public virtual ICollection <PaymentType> PaymentTypes { get; set; }
+        public virtual ICollection <Product> Products { get; set; }
 
     }
 }

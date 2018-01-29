@@ -117,9 +117,13 @@ namespace BangazonAPI.Migrations
 
                     b.Property<bool>("Supervisor");
 
+                    b.Property<int?>("TrainingProgramId");
+
                     b.HasKey("EmployeeId");
 
                     b.HasIndex("DepartmentId");
+
+                    b.HasIndex("TrainingProgramId");
 
                     b.ToTable("Employee");
                 });
@@ -263,7 +267,7 @@ namespace BangazonAPI.Migrations
             modelBuilder.Entity("BangazonAPI.Models.ComputerEmployee", b =>
                 {
                     b.HasOne("BangazonAPI.Models.Computer", "Computer")
-                        .WithMany()
+                        .WithMany("ComputerEmployees")
                         .HasForeignKey("ComputerId")
                         .OnDelete(DeleteBehavior.Cascade);
 
@@ -276,15 +280,19 @@ namespace BangazonAPI.Migrations
             modelBuilder.Entity("BangazonAPI.Models.Employee", b =>
                 {
                     b.HasOne("BangazonAPI.Models.Department", "Department")
-                        .WithMany()
+                        .WithMany("Employees")
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("BangazonAPI.Models.TrainingProgram")
+                        .WithMany("Employees")
+                        .HasForeignKey("TrainingProgramId");
                 });
 
             modelBuilder.Entity("BangazonAPI.Models.Order", b =>
                 {
                     b.HasOne("BangazonAPI.Models.Customer", "Customer")
-                        .WithMany()
+                        .WithMany("Orders")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
@@ -292,12 +300,12 @@ namespace BangazonAPI.Migrations
             modelBuilder.Entity("BangazonAPI.Models.OrderProduct", b =>
                 {
                     b.HasOne("BangazonAPI.Models.Order", "Order")
-                        .WithMany()
+                        .WithMany("OrderProducts")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("BangazonAPI.Models.Product", "Product")
-                        .WithMany()
+                        .WithMany("OrderProducts")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
@@ -305,7 +313,7 @@ namespace BangazonAPI.Migrations
             modelBuilder.Entity("BangazonAPI.Models.PaymentType", b =>
                 {
                     b.HasOne("BangazonAPI.Models.Customer", "Customer")
-                        .WithMany()
+                        .WithMany("PaymentTypes")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
@@ -313,12 +321,12 @@ namespace BangazonAPI.Migrations
             modelBuilder.Entity("BangazonAPI.Models.Product", b =>
                 {
                     b.HasOne("BangazonAPI.Models.Customer", "Customer")
-                        .WithMany()
+                        .WithMany("Products")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("BangazonAPI.Models.ProductCategory", "ProductCategory")
-                        .WithMany()
+                        .WithMany("Products")
                         .HasForeignKey("ProductCategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
@@ -326,7 +334,7 @@ namespace BangazonAPI.Migrations
             modelBuilder.Entity("BangazonAPI.Models.TrainingEmployee", b =>
                 {
                     b.HasOne("BangazonAPI.Models.Employee", "Employee")
-                        .WithMany()
+                        .WithMany("TrainingEmployees")
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade);
 

@@ -120,9 +120,7 @@ namespace BangazonAPI.Controllers
             Example POST body:
             {   
                 productCategoryId: 2,
-                productCategory: null,
                 customerId: 1,
-                customer: null,
                 name: 'Bowler Hat',
                 price: 25,
                 description: 'Charlie Chaplin.',
@@ -192,9 +190,7 @@ namespace BangazonAPI.Controllers
             PUT /api/product/14
             {   productId: 14,
                 productCategoryId: 2,
-                productCategory: null,
                 customerId: 1,
-                customer: null,
                 name: 'Bowler Hat',
                 price: 25,
                 description: 'Charlie Chaplin.',

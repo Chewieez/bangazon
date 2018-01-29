@@ -24,6 +24,6 @@ namespace BangazonAPI.Models
     [Required]
     public int MaxAttendance { get; set; }
 
-    IEnumerable<Employee> Employees;
+    public virtual ICollection <Employee> Employees { get; set; }
   }
 }
