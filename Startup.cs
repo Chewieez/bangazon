@@ -27,7 +27,7 @@ namespace BangazonAPI
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
+        { 
             // Add CORS framework
             services.AddCors(options =>
             {
@@ -37,7 +37,9 @@ namespace BangazonAPI
                     builder => builder.WithOrigins("http://bangazon.com:8080", "http://bangazon.com:5000"));
             });
 
-            services.AddMvc();
+            services.AddMvc()
+            // Add reference loop ignore for GET requests
+               .AddJsonOptions(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             // define path to database
             string path = System.Environment.GetEnvironmentVariable("BANGAZON_API_DB");
             var connection = $"Filename={path}";

@@ -15,21 +15,21 @@ namespace BangazonAPI.Controllers
     {
         private readonly BangazonAPIContext _context;
 
-         public OrderController(BangazonAPIContext ctx)
+        public OrderController(BangazonAPIContext ctx)
         {
             _context = ctx;
 
-            if(_context.Order.Count() == 0)
-			{
+            if (_context.Order.Count() == 0)
+            {
                 _context.SaveChanges();
-			}
+            }
         }
 
-        // GET api/values
+        // GET api/order
         [HttpGet]
         public IActionResult Get()
         {
-            
+
             var order = _context.Order.ToList();
 
             if (order == null)
@@ -40,8 +40,8 @@ namespace BangazonAPI.Controllers
 
         }
 
-        // GET api/values/5
-        [HttpGet("{id}", Name="GetSingleOrder")]
+        // GET api/order/{id}
+        [HttpGet("{id}", Name = "GetSingleOrderWithProducts")]
         public IActionResult Get(int id)
         {
             if (!ModelState.IsValid)
@@ -51,7 +51,45 @@ namespace BangazonAPI.Controllers
 
             try
             {
-                Order order = _context.Order.Single(t => t.OrderId == id);
+
+                // Author: Dre Randaci
+                // API GET request for a single order and all of it's associated products
+                // Example respose:
+                    // {
+                    //     "orderId": 1,
+                    //     "customerId": 1,
+                    //     "paymentTypeId": 1,
+                    //     "products": [
+                    //     {
+                    //         "productId": 1,
+                    //         "name": "Knit Hat",
+                    //         "price": 25,
+                    //         "quantity": 2
+                    //     },
+                    //     {
+                    //         "productId": 2,
+                    //         "name": "Knit Scarf",
+                    //         "price": 25,
+                    //         "quantity": 4
+                    //     }
+                    // } 
+
+                var order = 
+                // Query for a single order
+                _context.Order.Where(o => o.OrderId == id)
+                // Create an anonymous object
+                .Select(o => new {
+                    OrderId = o.OrderId,
+                    CustomerId = o.CustomerId,
+                    PaymentTypeId = o.PaymentTypeId,
+                    // Traverse the joiner table and return the products associated by creating another anonymous object
+                    Products = o.OrderProducts.Select(op => new {
+                        ProductId = op.Product.ProductId,
+                        Name = op.Product.Name,
+                        Price = op.Product.Price,
+                        Quantity = op.Product.Quantity
+                    }) 
+                });                
 
                 
 
