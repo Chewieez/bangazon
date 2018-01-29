@@ -34,7 +34,7 @@ namespace BangazonAPI
                 // define a CORS policy to use
                 // this policy will restrict api usage to just users on http://bangazon.com
                 options.AddPolicy("AllowOnlyTheseOrigins",
-                    builder => builder.WithOrigins("http://bangazon.com"));
+                    builder => builder.WithOrigins("http://bangazon.com:8080", "http://bangazon.com:5000"));
             });
 
             services.AddMvc();
