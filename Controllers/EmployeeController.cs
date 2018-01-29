@@ -8,25 +8,48 @@ using BangazonAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 
+// Author: Greg Lawrence
+// Api to let users access the Employee resource
+/* Example Response:
+    {
+        "employeeId": 1,
+        "departmentId": 1,
+        "department": null,
+        "firstName": "Kenneth",
+        "lastName": "Allen",
+        "startDate": "2017-06-11T00:00:00",
+        "supervisor": false
+    }
+*/
+
 namespace BangazonAPI.Controllers
 {
     [Route("api/[controller]")]
     public class EmployeeController : Controller
     {
+        // variable to hold the database context
         private readonly BangazonAPIContext _context;
 
-         public EmployeeController(BangazonAPIContext ctx)
+        // injecting the database context into controller
+        public EmployeeController(BangazonAPIContext ctx)
         {
             _context = ctx;
         }
 
-        // GET api/values
+        /*
+            Author: Greg Lawrence
+            URL: GET api/employee
+            Description:
+            This method handles GET requests for the employee resource. 
+        */
+
         [HttpGet]
         public IActionResult Get()
         {
-            
+            // variable to hold list of employees
             var employee = _context.Employee.ToList();
 
+            // error handling to send a Not Found return if there are no employees.
             if (employee == null)
             {
                 return NotFound();
@@ -35,15 +58,23 @@ namespace BangazonAPI.Controllers
 
         }
 
-        // GET api/values/5
-        [HttpGet("{id}", Name="GetSingleEmployee")]
+
+        /*
+            Author: Greg Lawrence
+            URL: GET api/employee/id
+            Description:
+            This method handles GET requests for a single employee. 
+        */
+        [HttpGet("{id}", Name = "GetSingleEmployee")]
         public IActionResult Get(int id)
         {
+            // error handling to check if the user inputted the correct info to use API, in this case, an integer
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
+            // search database context and try to find a match for the employee id submitted
             try
             {
                 Employee employee = _context.Employee.Single(e => e.EmployeeId == id);
@@ -61,17 +92,20 @@ namespace BangazonAPI.Controllers
             }
         }
 
-        // POST api/values
-
         /*
-        Example POST Request for employee
-        {
-            "departmentId": 1,
-            "firstName": "Kenneth",
-            "lastName": "Allen",
-            "startDate": "2017-06-11",
-            "supervisor": false
-        }
+            Author: Greg Lawrence
+            URL: POST api/employee
+            Description:
+            This method handles POST requests to create a single employee. 
+            Example POST Request for employee
+            {
+              "departmentId": 1,
+              "firstName": "Kenneth",
+              "lastName": "Allen",
+              "startDate": "2017-06-11",
+              "supervisor": false
+            }
+
         */
         [HttpPost]
         public IActionResult Post([FromBody]Employee employee)
@@ -89,6 +123,7 @@ namespace BangazonAPI.Controllers
             }
             catch (DbUpdateException)
             {
+                // check if the Employee Id already exists in the database, if it does, throw an error
                 if (EmployeeExists(employee.EmployeeId))
                 {
                     return new StatusCodeResult(StatusCodes.Status409Conflict);
@@ -98,10 +133,21 @@ namespace BangazonAPI.Controllers
                     throw;
                 }
             }
+
+            /*
+                The CreatedAtRoute method will return the newly created employee in the
+                body of the response, and the Location meta-data header will contain
+                the URL for the new employee resource
+             */
             return CreatedAtRoute("GetSingleEmployee", new { id = employee.EmployeeId }, employee);
         }
 
-        // PUT api/values/5
+        /*
+            Author: Greg Lawrence
+            URL: PUT api/employee/id
+            Description:
+            This method handles PUT requests to edit a single employee resource. You need to send in the entire object to edit including employeeId, not just the fields you want to edit.  
+        */
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]Employee employee)
         {
@@ -128,10 +174,13 @@ namespace BangazonAPI.Controllers
                 }
             }
             return CreatedAtRoute("GetSingleEmployee", new { id = employee.EmployeeId }, employee);
-
-
         }
 
+        /*
+            Author: Greg Lawrence
+            Description:
+            This method checks if a employee with the passed in Id exists in the database and returns True or False. 
+        */
         private bool EmployeeExists(int EmployeeId)
         {
             return _context.Employee.Any(e => e.EmployeeId == EmployeeId);
