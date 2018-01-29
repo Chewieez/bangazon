@@ -20,7 +20,18 @@ namespace BangazonAPI.Controllers
             _context = ctx;
         }
 
-        // GET api/values
+        /*
+            Author: Krys Mathis
+            URL: GET api/paymenttype/
+            Description:
+            Handles return all payment type records from the database
+            Example GET body:
+                {
+                    "toyname": "Hot wheels",
+                    "childname": "Samantha Young"
+                }
+         */
+
         [HttpGet]
         public IActionResult Get()
         {
