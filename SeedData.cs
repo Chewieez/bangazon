@@ -100,7 +100,7 @@ namespace BangazonAPI
 			/**************************/
 			if (!context.Employee.Any())
 			{
-				// IT Department
+				/* IT Department */
 				int deptId = (from b in context.Department 
                    where b.Name.Equals("IT") 
                    select b.DepartmentId).Single();
@@ -111,7 +111,7 @@ namespace BangazonAPI
 				context.Employee.Add(new Employee { DepartmentId = deptId, FirstName = "Dan", LastName = "Williams", StartDate = Convert.ToDateTime("11/23/2016"), Supervisor = true });
 				context.Employee.Add(new Employee { DepartmentId = deptId, FirstName = "Ben", LastName = "Taylor", StartDate = Convert.ToDateTime("04/15/2017"), Supervisor = false });
 
-				// Admin Department
+				/* Admin Department */
 				deptId = (from b in context.Department 
                    where b.Name.Equals("Admin") 
                    select b.DepartmentId).Single();
@@ -122,7 +122,7 @@ namespace BangazonAPI
 				context.Employee.Add(new Employee { DepartmentId = deptId, FirstName = "Henry", LastName = "Mall", StartDate = Convert.ToDateTime("06/09/2017"), Supervisor = false });
 				context.Employee.Add(new Employee { DepartmentId = deptId, FirstName = "George", LastName = "Davidson", StartDate = Convert.ToDateTime("04/14/2017"), Supervisor = false });
 
-				// Engineering Deparment
+				/* Engineering Deparment */
 				deptId = (from b in context.Department 
                    where b.Name.Equals("Engineering") 
                    select b.DepartmentId).Single();
@@ -133,7 +133,7 @@ namespace BangazonAPI
 				context.Employee.Add(new Employee { DepartmentId = deptId, FirstName = "Teresa", LastName = "Evans", StartDate = Convert.ToDateTime("06/01/2017"), Supervisor = false });
 				context.Employee.Add(new Employee { DepartmentId = deptId, FirstName = "Susan", LastName = "Lee", StartDate = Convert.ToDateTime("04/02/2017"), Supervisor = false });
 
-				// Human Resources Department
+				/* Human Resources Department */
 				deptId = (from b in context.Department 
                    where b.Name.Equals("Human Resources") 
                    select b.DepartmentId).Single();
@@ -464,11 +464,15 @@ namespace BangazonAPI
 			/**************************/
 			if (!context.Customer.Any())
 			{
+				/********************************************************************************/
+				/* commented out customers can be uncommented if we need or want more customers */
+				/********************************************************************************/
+				
 				context.Customer.Add(new Customer { FirstName = "Stacy", LastName = "Gauger", CreationDate = Convert.ToDateTime("06/21/2017"), LastLoginDate = Convert.ToDateTime("01/24/2018") });
 				context.Customer.Add(new Customer { FirstName = "Stephan", LastName = "Adams", CreationDate = Convert.ToDateTime("07/11/2017"), LastLoginDate = Convert.ToDateTime("01/26/2018") });
 				context.Customer.Add(new Customer { FirstName = "Belle", LastName = "Martin", CreationDate = Convert.ToDateTime("07/06/2017"), LastLoginDate = Convert.ToDateTime("01/25/2018") });
 				context.Customer.Add(new Customer { FirstName = "Jeraldine", LastName = "Chenard", CreationDate = Convert.ToDateTime("06/23/2017"), LastLoginDate = Convert.ToDateTime("01/27/2018") });
-				// context.Customer.Add(new Customer { FirstName = "Mila", LastName = "Lone", CreationDate = Convert.ToDateTime("07/15/2017"), LastLoginDate = Convert.ToDateTime("01/27/2018") });
+				context.Customer.Add(new Customer { FirstName = "Mila", LastName = "Lone", CreationDate = Convert.ToDateTime("07/15/2017"), LastLoginDate = Convert.ToDateTime("01/28/2018") });
                 
 				// context.Customer.Add(new Customer { FirstName = "Samara", LastName = "Mello", CreationDate = Convert.ToDateTime("06/26/2017"), LastLoginDate = Convert.ToDateTime("12/27/2017") });
 				// context.Customer.Add(new Customer { FirstName = "Justin", LastName = "Kohr", CreationDate = Convert.ToDateTime("08/30/2016"), LastLoginDate = Convert.ToDateTime("01/22/2018") });
@@ -540,6 +544,17 @@ namespace BangazonAPI
 
 				context.Product.Add(new Product { CustomerId = customerId, Description = "A very warm beautifully hand crafted quilt.", Name = "Handmade Quilt", Price = 155.25, ProductCategoryId = productCategoryId, Quantity = 4 });
 
+				customerId = (from c in context.Customer 
+                   where c.LastName.Equals("Lone") && c.FirstName.Equals("Mila")
+                   select c.CustomerId).Single();
+
+				productCategoryId = (from pc in context.ProductCategory 
+                   where pc.Name.Equals("Arts & Collectibles")
+                   select pc.ProductCategoryId).Single();
+
+				context.Product.Add(new Product { CustomerId = customerId, Description = "An elephant themed, wooden, hand decorated trinket box.", Name = "Elephant Trinket Box", Price = 21.75, ProductCategoryId = productCategoryId, Quantity = 3 });
+				context.Product.Add(new Product { CustomerId = customerId, Description = "An owl themed, wooden, hand decorated trinket box.", Name = "Owl Trinket Box", Price = 21.75, ProductCategoryId = productCategoryId, Quantity = 3 });
+
 				context.SaveChanges();
 			}
 
@@ -575,12 +590,18 @@ namespace BangazonAPI
 				context.PaymentType.Add(new PaymentType { AccountNumber = 11114, CustomerId = customerId, Name = "PayPal" });
 				context.PaymentType.Add(new PaymentType { AccountNumber = 22223, CustomerId = customerId, Name = "Apple Pay" });
 
+				customerId = (from c in context.Customer 
+                   where c.LastName.Equals("Lone") && c.FirstName.Equals("Mila")
+                   select c.CustomerId).Single();
+
+				context.PaymentType.Add(new PaymentType { AccountNumber = 11115, CustomerId = customerId, Name = "PayPal" });
+
 				context.SaveChanges();
 			}
 
-			/*****************************/
+			/***********************/
 			/* Seeding Order Table */
-			/*****************************/
+			/***********************/
 			if (!context.Order.Any())
 			{
 				int customerId = (from c in context.Customer 

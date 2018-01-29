@@ -19,9 +19,12 @@ namespace BangazonAPI
             // DO NOT REMOVE THE FOLLOWING LINE
             var host = BuildWebHost(args);
 
-            /*********************************************************************/
-            /* Comment out or remove the Seed Block to stop seeding the database */
-            /*********************************************************************/
+            /************************************************************************/
+            /* 1. Comment out or remove the Seed Block to stop seeding the database */
+            /* 2. Drop or delete the database (the .db file)                        */
+            /* 3. Update the database                                               */
+            /* 4. Optional - delete the SeedData.cs file                            */
+            /************************************************************************/
 
             /********/
             /* Seed */
