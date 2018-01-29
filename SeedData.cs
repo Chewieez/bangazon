@@ -474,23 +474,23 @@ namespace BangazonAPI
 				context.Customer.Add(new Customer { FirstName = "Jeraldine", LastName = "Chenard", CreationDate = Convert.ToDateTime("06/23/2017"), LastLoginDate = Convert.ToDateTime("01/27/2018") });
 				context.Customer.Add(new Customer { FirstName = "Mila", LastName = "Lone", CreationDate = Convert.ToDateTime("07/15/2017"), LastLoginDate = Convert.ToDateTime("01/28/2018") });
                 
-				// context.Customer.Add(new Customer { FirstName = "Samara", LastName = "Mello", CreationDate = Convert.ToDateTime("06/26/2017"), LastLoginDate = Convert.ToDateTime("12/27/2017") });
-				// context.Customer.Add(new Customer { FirstName = "Justin", LastName = "Kohr", CreationDate = Convert.ToDateTime("08/30/2016"), LastLoginDate = Convert.ToDateTime("01/22/2018") });
-				// context.Customer.Add(new Customer { FirstName = "Debbie", LastName = "Mansell", CreationDate = Convert.ToDateTime("09/01/2017"), LastLoginDate = Convert.ToDateTime("01/21/2018") });
-				// context.Customer.Add(new Customer { FirstName = "Tyron", LastName = "Hawkes", CreationDate = Convert.ToDateTime("08/23/2017"), LastLoginDate = Convert.ToDateTime("01/27/2018") });
-				// context.Customer.Add(new Customer { FirstName = "Beau", LastName = "Lampkins", CreationDate = Convert.ToDateTime("08/03/2017"), LastLoginDate = Convert.ToDateTime("01/27/2018") });
+				context.Customer.Add(new Customer { FirstName = "Samara", LastName = "Mello", CreationDate = Convert.ToDateTime("06/26/2017"), LastLoginDate = Convert.ToDateTime("12/27/2017") });
+				context.Customer.Add(new Customer { FirstName = "Justin", LastName = "Kohr", CreationDate = Convert.ToDateTime("08/30/2016"), LastLoginDate = Convert.ToDateTime("01/22/2018") });
+				context.Customer.Add(new Customer { FirstName = "Debbie", LastName = "Mansell", CreationDate = Convert.ToDateTime("09/01/2017"), LastLoginDate = Convert.ToDateTime("01/21/2018") });
+				context.Customer.Add(new Customer { FirstName = "Tyron", LastName = "Hawkes", CreationDate = Convert.ToDateTime("08/23/2017"), LastLoginDate = Convert.ToDateTime("01/27/2018") });
+				context.Customer.Add(new Customer { FirstName = "Beau", LastName = "Lampkins", CreationDate = Convert.ToDateTime("08/03/2017"), LastLoginDate = Convert.ToDateTime("01/27/2018") });
                 
-				// context.Customer.Add(new Customer { FirstName = "William", LastName = "Gallaway", CreationDate = Convert.ToDateTime("08/27/2017"), LastLoginDate = Convert.ToDateTime("01/26/2018") });
-				// context.Customer.Add(new Customer { FirstName = "Vicente", LastName = "Duby", CreationDate = Convert.ToDateTime("08/15/2016"), LastLoginDate = Convert.ToDateTime("01/21/2018") });
-				// context.Customer.Add(new Customer { FirstName = "Michael", LastName = "Yu", CreationDate = Convert.ToDateTime("08/29/2017"), LastLoginDate = Convert.ToDateTime("12/07/2017") });
-				// context.Customer.Add(new Customer { FirstName = "Addie", LastName = "Fisher", CreationDate = Convert.ToDateTime("09/01/2017"), LastLoginDate = Convert.ToDateTime("11/22/2017") });
-				// context.Customer.Add(new Customer { FirstName = "Callie", LastName = "Eckron", CreationDate = Convert.ToDateTime("09/02/2017"), LastLoginDate = Convert.ToDateTime("01/25/2018") });
+				context.Customer.Add(new Customer { FirstName = "William", LastName = "Gallaway", CreationDate = Convert.ToDateTime("08/27/2017"), LastLoginDate = Convert.ToDateTime("01/26/2018") });
+				context.Customer.Add(new Customer { FirstName = "Vicente", LastName = "Duby", CreationDate = Convert.ToDateTime("08/15/2016"), LastLoginDate = Convert.ToDateTime("01/21/2018") });
+				context.Customer.Add(new Customer { FirstName = "Michael", LastName = "Yu", CreationDate = Convert.ToDateTime("08/29/2017"), LastLoginDate = Convert.ToDateTime("12/07/2017") });
+				context.Customer.Add(new Customer { FirstName = "Addie", LastName = "Fisher", CreationDate = Convert.ToDateTime("09/01/2017"), LastLoginDate = Convert.ToDateTime("11/22/2017") });
+				context.Customer.Add(new Customer { FirstName = "Callie", LastName = "Eckron", CreationDate = Convert.ToDateTime("09/02/2017"), LastLoginDate = Convert.ToDateTime("01/25/2018") });
                 
-				// context.Customer.Add(new Customer { FirstName = "Toni", LastName = "Rasch", CreationDate = Convert.ToDateTime("10/05/2017"), LastLoginDate = Convert.ToDateTime("12/21/2017") });
-				// context.Customer.Add(new Customer { FirstName = "Gail", LastName = "Aviles", CreationDate = Convert.ToDateTime("11/19/2016"), LastLoginDate = Convert.ToDateTime("01/21/2018") });
-				// context.Customer.Add(new Customer { FirstName = "Loreta", LastName = "Balmer", CreationDate = Convert.ToDateTime("10/17/2017"), LastLoginDate = Convert.ToDateTime("01/20/2018") });
-				// context.Customer.Add(new Customer { FirstName = "Selina", LastName = "Fairchild", CreationDate = Convert.ToDateTime("11/03/2017"), LastLoginDate = Convert.ToDateTime("01/24/2018") });
-				// context.Customer.Add(new Customer { FirstName = "Albert", LastName = "Lewis", CreationDate = Convert.ToDateTime("11/13/2017"), LastLoginDate = Convert.ToDateTime("01/18/2018") });
+				context.Customer.Add(new Customer { FirstName = "Toni", LastName = "Rasch", CreationDate = Convert.ToDateTime("10/05/2017"), LastLoginDate = Convert.ToDateTime("12/21/2017") });
+				context.Customer.Add(new Customer { FirstName = "Gail", LastName = "Aviles", CreationDate = Convert.ToDateTime("11/19/2016"), LastLoginDate = Convert.ToDateTime("01/21/2018") });
+				context.Customer.Add(new Customer { FirstName = "Loreta", LastName = "Balmer", CreationDate = Convert.ToDateTime("10/17/2017"), LastLoginDate = Convert.ToDateTime("01/20/2018") });
+				context.Customer.Add(new Customer { FirstName = "Selina", LastName = "Fairchild", CreationDate = Convert.ToDateTime("11/03/2017"), LastLoginDate = Convert.ToDateTime("01/24/2018") });
+				context.Customer.Add(new Customer { FirstName = "Albert", LastName = "Lewis", CreationDate = Convert.ToDateTime("11/13/2017"), LastLoginDate = Convert.ToDateTime("01/18/2018") });
 
 				context.SaveChanges();
 			}
