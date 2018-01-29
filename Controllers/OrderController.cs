@@ -133,7 +133,7 @@ namespace BangazonAPI.Controllers
         {
             /*
                 This method will extract the key/value pairs from the JSON
-                object that is posted, and create a new instance of the Child
+                object that is posted, and create a new instance of the order
                 model class, with the corresponding properties set.
                 If any of the validations fail, such as length of string values,
                 if a value is required, etc., then the API will respond that
@@ -176,7 +176,6 @@ namespace BangazonAPI.Controllers
                 "orderId": 18,
                 "paymentTypeId": 2,
                 "customerId": 1,
-                "customer": null,
                 "completedDate": "2018-01-29T00:00:00"
             }
 
@@ -208,9 +207,9 @@ namespace BangazonAPI.Controllers
                 }
             }
             /*
-                The CreatedAtRoute method will return the newly created child in the
+                The CreatedAtRoute method will return the newly created order in the
                 body of the response, and the Location meta-data header will contain
-                the URL for the new child resource
+                the URL for the new order resource
             */
             return CreatedAtRoute("GetSingleOrder", new { id = order.OrderId }, order);
 
