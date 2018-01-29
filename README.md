@@ -29,10 +29,57 @@ The Bangazon-API provides users with access to information about the Bangazon or
 Supports: GET, POST, PUT
 
 ### GET
-#### Example URL:
-/api/
-#### Description:
-#### Example Response:
+- Example URL: 
+ http://localhost:5000/api/Department
+- Example Response:
+```
+[
+  {
+    "departmentId": 1,
+    "name": "IT",
+    "expenseBudget": 899000
+  },
+  {
+    "departmentId": 2,
+    "name": "Admin",
+    "expenseBudget": 500000
+  }
+]
+```
+### GET Single Record
+- Example URL:
+http://localhost:5000/api/Department/1
+- Example Response:
+```
+{
+  "departmentId": 1,
+  "name": "IT",
+  "expenseBudget": 899000
+}
+```
+
+### POST
+- Example URL:
+http://localhost:5000/api/Department
+- Example POST Request:
+```
+{
+  "name": "string",
+  "expenseBudget": 0
+}
+```
+
+### PUT
+- Example URL:
+http://localhost:5000/api/Department/1
+- Example PUT Request:
+```
+{
+  "departmentId": 0,
+  "name": "string",
+  "expenseBudget": 0
+}
+```
 
 ## Employee
 Supports: GET, POST, PUT
