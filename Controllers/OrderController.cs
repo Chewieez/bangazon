@@ -74,10 +74,15 @@ namespace BangazonAPI.Controllers
                     //     }
                     // } 
 
-                var order = _context.Order.Where(o => o.OrderId == id).Select(o => new {
+                var order = 
+                // Query for a single order
+                _context.Order.Where(o => o.OrderId == id)
+                // Create an anonymous object
+                .Select(o => new {
                     OrderId = o.OrderId,
                     CustomerId = o.CustomerId,
                     PaymentTypeId = o.PaymentTypeId,
+                    // Traverse the joiner table and return the products associated by creating another anonymous object
                     Products = o.OrderProducts.Select(op => new {
                         ProductId = op.Product.ProductId,
                         Name = op.Product.Name,
