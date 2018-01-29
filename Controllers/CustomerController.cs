@@ -8,14 +8,28 @@ using BangazonAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 
+// Author: Greg Lawrence
+// Api to let users access the Customer resource
+/* Example Response:
+    {
+        "customerId": 1,
+        "firstName": "Stacy",
+        "lastName": "Gauger",
+        "creationDate": "2017-06-21T00:00:00",
+        "lastLoginDate": "2018-01-24T00:00:00"
+    } 
+*/
+
 namespace BangazonAPI.Controllers
 {
     [Route("api/[controller]")]
     public class CustomerController : Controller
     {
+        // variable to hold the database context
         private readonly BangazonAPIContext _context;
 
-         public CustomerController(BangazonAPIContext ctx)
+        // injecting the database context into controller
+        public CustomerController(BangazonAPIContext ctx)
         {
             _context = ctx;
         }
@@ -33,6 +47,7 @@ namespace BangazonAPI.Controllers
                 /api/customer/?active=false - customers without orders
          */
  
+
         [HttpGet]
         public IActionResult Get(bool? active)
         {
@@ -74,15 +89,22 @@ namespace BangazonAPI.Controllers
         }
 
 
-        // GET api/[controller]/5
+        /*
+            Author: Greg Lawrence
+            URL: GET api/customer/id
+            Description:
+            This method handles GET requests for a single customer. 
+        */
         [HttpGet("{id:int}", Name="GetSingleCustomer")]
         public IActionResult Get(int id)
         {
+            // error handling to check if the user inputted the correct info to use API, in this case, an integer
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
+            // search database context and try to find a match for the employee id submitted
             try
             {
                 Customer customer = _context.Customer.Single(c => c.CustomerId == id);
@@ -100,7 +122,13 @@ namespace BangazonAPI.Controllers
             }
         }
 
-        // POST api/values
+
+        /*
+            Author: Greg Lawrence
+            URL: POST api/customer
+            Description:
+            This method handles POST requests to create a single customer. 
+        */
         [HttpPost]
         public IActionResult Post([FromBody]Customer customer)
         {
@@ -117,6 +145,7 @@ namespace BangazonAPI.Controllers
             }
             catch (DbUpdateException)
             {
+                // check if the customer Id already exists in the database, if it does, throw an error
                 if (CustomerExists(customer.CustomerId))
                 {
                     return new StatusCodeResult(StatusCodes.Status409Conflict);
@@ -126,13 +155,33 @@ namespace BangazonAPI.Controllers
                     throw;
                 }
             }
+
+            /*
+                The CreatedAtRoute method will return the newly created employee in the
+                body of the response, and the Location meta-data header will contain
+                the URL for the new employee resource.
+                Example response:
+                {
+                    "customerId": 1,
+                    "firstName": "Stacy",
+                    "lastName": "Gauger",
+                    "creationDate": "2017-06-21T00:00:00",
+                    "lastLoginDate": "2018-01-24T00:00:00"
+                }
+             */
             return CreatedAtRoute("GetSingleCustomer", new { id = customer.CustomerId }, customer);
         }
 
-        // PUT api/values/5
+        /*
+            Author: Greg Lawrence
+            URL: PUT api/customer/id
+            Description:
+            This method handles PUT requests to edit a single customer resource. You need to send in the entire object to edit including customerId, not just the fields you want to edit.  
+        */
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]Customer customer)
         {
+            // error handling to check if the user inputted the correct info to use API, in this case, an integer
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -146,6 +195,7 @@ namespace BangazonAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
+                // check if the Customer Id already exists in the database, if it does, throw an error
                 if (!CustomerExists(customer.CustomerId))
                 {
                     return NotFound();
@@ -155,11 +205,15 @@ namespace BangazonAPI.Controllers
                     throw;
                 }
             }
+
             return CreatedAtRoute("GetSingleCustomer", new { id = customer.CustomerId }, customer);
-
-
         }
 
+         /*
+            Author: Greg Lawrence
+            Description:
+            This method checks if a employee with the passed in Id exists in the database True or False.  
+        */        
         private bool CustomerExists(int CustomerId)
         {
             return _context.Customer.Any(c => c.CustomerId == CustomerId);
