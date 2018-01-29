@@ -90,6 +90,15 @@ namespace BangazonAPI.Controllers
         }
 
         // POST api/values
+        /*
+        Example POST Request for customer
+        {
+            
+            "firstName": "Stacy",
+            "lastName": "Gauger",
+        }
+        */
+        
         [HttpPost]
         public IActionResult Post([FromBody]Customer customer)
         {
@@ -98,7 +107,7 @@ namespace BangazonAPI.Controllers
                 return BadRequest(ModelState);
             }
             
-            // Add a timestamp to customer CreationDate for todays date. 
+            // Add a timestamp to customer CreationDate field for current date.  
             customer.CreationDate = DateTime.Now;
 
             // save customer to context file

@@ -62,6 +62,17 @@ namespace BangazonAPI.Controllers
         }
 
         // POST api/values
+
+        /*
+        Example POST Request for employee
+        {
+            "departmentId": 1,
+            "firstName": "Kenneth",
+            "lastName": "Allen",
+            "startDate": "2017-06-11",
+            "supervisor": false
+        }
+        */
         [HttpPost]
         public IActionResult Post([FromBody]Employee employee)
         {
