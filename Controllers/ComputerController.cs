@@ -20,25 +20,67 @@ namespace BangazonAPI.Controllers
             _context = ctx;
         }
 
-        // GET api/values
+        /*
+            Author: Jason Figueroa
+            URL: GET api/computer
+            Description:
+            Returns the computer values from the database
+            Example GET response:
+            [
+                {
+                    "computerId": 1,
+                    "name": "Microsoft Surface Laptop",
+                    "serialNumber": "11202",
+                    "purchaseDate": "2017-01-23T00:00:00",
+                    "decommissionDate": null
+                },
+                {
+                    "computerId": 2,
+                    "name": "Dell Inspiron 7000",
+                    "serialNumber": "33319",
+                    "purchaseDate": "2017-05-21T00:00:00",
+                    "decommissionDate": null
+                }
+            ]
+        */
         [HttpGet]
         public IActionResult Get()
         {
             
+            // from the BangazonAPIContext object, retrieve the Computer table
             var computer = _context.Computer.ToList();
 
             if (computer == null)
             {
                 return NotFound();
             }
+
+            // values will be in JSON format
             return Ok(computer);
 
         }
 
-        // GET api/values/5
+        /*
+            Author: Jason Figueroa
+            URL: GET api/computer/{id}
+            Description:
+            Returns a specific computer based on ComputerId
+            Example GET response for "/api/computer/1":
+            {
+                "computerId": 1,
+                "name": "Microsoft Surface Laptop",
+                "serialNumber": "11202",
+                "purchaseDate": "2017-01-23T00:00:00",
+                "decommissionDate": null
+            }
+        */
         [HttpGet("{id}", Name="GetSingleComputer")]
         public IActionResult Get(int id)
         {
+            /*
+                This condition validates the values in model binding.
+                In this case, it validates that the id value is an integer.
+             */
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -46,6 +88,7 @@ namespace BangazonAPI.Controllers
 
             try
             {
+                // from the BangazonAPIContext object, retrieve the a single computer record
                 Computer computer = _context.Computer.Single(t => t.ComputerId == id);
 
                 if (computer == null)
@@ -53,6 +96,7 @@ namespace BangazonAPI.Controllers
                     return NotFound();
                 }
 
+                // values will be in JSON format
                 return Ok(computer);
             }
             catch (System.InvalidOperationException ex)
@@ -61,10 +105,42 @@ namespace BangazonAPI.Controllers
             }
         }
 
-        // POST api/values
+        /*
+            Author: Jason Figueroa
+            URL: POST api/computer/
+            Description:
+            This method handles post requests, which adds a
+            record to the database. When executing the POST request, do not
+            include the computerId in the body of the request. The database will
+            assign a unique ComputerId.
+            Example POST body:
+            {
+                "name": "MacBook Air",
+                "serialNumber": "10688",
+                "purchaseDate": "2017-01-29T00:00:00",
+                "decommissionDate": null
+            }
+            
+            Assuming the newly created id is 24, the return value is:
+            {
+                "computerId": 24,
+                "name": "MacBook Air",
+                "serialNumber": "10688",
+                "purchaseDate": "2017-01-29T00:00:00",
+                "decommissionDate": null
+            }
+         */
         [HttpPost]
         public IActionResult Post([FromBody]Computer computer)
         {
+            /*
+                This method will extract the key/value pairs from the JSON
+                object that is posted, and create a new instance of the computer
+                model class, with the corresponding properties set.
+                If any of the validations fail, such as length of string values,
+                if a value is required, etc., then the API will respond that
+                it is a bad request.
+             */
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -90,7 +166,24 @@ namespace BangazonAPI.Controllers
             return CreatedAtRoute("GetSingleComputer", new { id = computer.ComputerId }, computer);
         }
 
-        // PUT api/values/5
+        /*
+            Author: Jason Figueroa
+            URL: PUT api/computer/{id}
+            Description:
+            This method handles put requests for computer. Users need to 
+            provide a full computer object to complete the update.
+            Example PUT Request:
+            PUT /api/computer/24
+            {
+                "computerId": 24,
+                "name": "MacBook Pro",
+                "serialNumber": "10688",
+                "purchaseDate": "2017-01-29T00:00:00",
+                "decommissionDate": null
+            }
+
+            If successful, the return value will match the body of your PUT request.
+         */
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]Computer computer)
         {
@@ -116,12 +209,20 @@ namespace BangazonAPI.Controllers
                     throw;
                 }
             }
+            /*
+                The CreatedAtRoute method will return the newly created computer in the
+                body of the response, and the Location meta-data header will contain
+                the URL for the new computer resource
+            */
             return CreatedAtRoute("GetSingleComputer", new { id = computer.ComputerId }, computer);
-
 
         }
 
-        // DELETE api/values/5
+        /*
+            Author: Jason Figueroa
+            URL: DELETE api/computer/24
+            Description: This method handles DELETE requests for the computer records.
+        */
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

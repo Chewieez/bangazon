@@ -18,32 +18,54 @@ namespace BangazonAPI.Controllers
         public OrderController(BangazonAPIContext ctx)
         {
             _context = ctx;
-
-            if (_context.Order.Count() == 0)
-            {
-                _context.SaveChanges();
-            }
         }
 
-        // GET api/order
+        /*
+            Author: Jason Figueroa
+            URL: GET api/order
+            Description:
+            Returns the order values from the database
+            Example GET response:
+            [
+                {
+                    "orderId": 1,
+                    "paymentTypeId": 1,
+                    "customerId": 1,
+                    "customer": null,
+                    "completedDate": "2017-07-17T00:00:00"
+                },
+                {
+                    "orderId": 2,
+                    "paymentTypeId": 16,
+                    "customerId": 16,
+                    "customer": null,
+                    "completedDate": "2017-12-09T00:00:00"
+                }
+            ]
+        */
         [HttpGet]
         public IActionResult Get()
         {
-
+            // from the BangazonAPIContext object, retrieve the Order table
             var order = _context.Order.ToList();
 
             if (order == null)
             {
                 return NotFound();
             }
+
+            // values will be in JSON format
             return Ok(order);
 
         }
 
-        // GET api/order/{id}
-        [HttpGet("{id}", Name = "GetSingleOrderWithProducts")]
+        [HttpGet("{id}", Name = "GetSingleOrder")]
         public IActionResult Get(int id)
         {
+            /*
+                This condition validates the values in model binding.
+                In this case, it validates that the id value is an integer.
+             */
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -51,7 +73,6 @@ namespace BangazonAPI.Controllers
 
             try
             {
-
                 // Author: Dre Randaci
                 // API GET request for a single order and all of it's associated products
                 // Example respose:
@@ -91,13 +112,12 @@ namespace BangazonAPI.Controllers
                     }) 
                 });                
 
-                
-
                 if (order == null)
                 {
                     return NotFound();
                 }
 
+                // values will be in JSON format
                 return Ok(order);
             }
             catch (System.InvalidOperationException ex)
@@ -106,10 +126,41 @@ namespace BangazonAPI.Controllers
             }
         }
 
-        // POST api/values
+        /*
+            Author: Jason Figueroa
+            URL: POST api/order/
+            Description:
+            This method handles post requests, which adds a
+            record to the database. When executing the POST request, do not
+            include the orderId in the body of the request. The database will
+            assign a unique OrderId.
+            Example POST body:
+            {
+                "paymentTypeId": 1,
+                "customerId": 1,
+                "completedDate": "2018-01-29T00:00:00"
+            }
+            
+            Assuming the newly created id is 18, the return value is:
+            {
+                "orderId": 18,
+                "paymentTypeId": 1,
+                "customerId": 1,
+                "customer": null,
+                "completedDate": "2018-01-29T00:00:00"
+            }
+         */
         [HttpPost]
         public IActionResult Post([FromBody]Order order)
         {
+            /*
+                This method will extract the key/value pairs from the JSON
+                object that is posted, and create a new instance of the order
+                model class, with the corresponding properties set.
+                If any of the validations fail, such as length of string values,
+                if a value is required, etc., then the API will respond that
+                it is a bad request.
+             */
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -135,7 +186,23 @@ namespace BangazonAPI.Controllers
             return CreatedAtRoute("GetSingleOrder", new { id = order.OrderId }, order);
         }
 
-        // PUT api/values/5
+        /*
+            Author: Jason Figueroa
+            URL: PUT api/order/{id}
+            Description:
+            This method handles put requests for order. Users need to 
+            provide a full order object to complete the update.
+            Example PUT Request:
+            PUT /api/order/18
+            {
+                "orderId": 18,
+                "paymentTypeId": 2,
+                "customerId": 1,
+                "completedDate": "2018-01-29T00:00:00"
+            }
+
+            If successful, the return value will match the body of your PUT request.
+         */
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]Order order)
         {
@@ -161,12 +228,21 @@ namespace BangazonAPI.Controllers
                     throw;
                 }
             }
+            /*
+                The CreatedAtRoute method will return the newly created order in the
+                body of the response, and the Location meta-data header will contain
+                the URL for the new order resource
+            */
             return CreatedAtRoute("GetSingleOrder", new { id = order.OrderId }, order);
 
 
         }
 
-        // DELETE api/values/5
+        /*
+            Author: Jason Figueroa
+            URL: DELETE api/order/18
+            Description: This method handles DELETE requests for the order records.
+        */
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
