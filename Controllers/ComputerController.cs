@@ -222,7 +222,7 @@ namespace BangazonAPI.Controllers
             Author: Jason Figueroa
             URL: DELETE api/computer/24
             Description: This method handles DELETE requests for the computer records.
-         */
+        */
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

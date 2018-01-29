@@ -111,27 +111,34 @@ namespace BangazonAPI.Controllers
             This method handles post requests, which adds a
             record to the database. When executing the POST request, do not
             include the orderId in the body of the request. The database will
-            assign a uniqure OrderId.
+            assign a unique OrderId.
             Example POST body:
             {
-                "name": "MacBook Air",
-                "serialNumber": "10688",
-                "purchaseDate": "2017-01-29T00:00:00",
-                "decommissionDate": null
+                "paymentTypeId": 1,
+                "customerId": 1,
+                "completedDate": "2018-01-29T00:00:00"
             }
             
-            Assuming the newly created id is 24, the return value is:
+            Assuming the newly created id is 18, the return value is:
             {
-                "orderId": 24,
-                "name": "MacBook Air",
-                "serialNumber": "10688",
-                "purchaseDate": "2017-01-29T00:00:00",
-                "decommissionDate": null
+                "orderId": 18,
+                "paymentTypeId": 1,
+                "customerId": 1,
+                "customer": null,
+                "completedDate": "2018-01-29T00:00:00"
             }
          */
         [HttpPost]
         public IActionResult Post([FromBody]Order order)
         {
+            /*
+                This method will extract the key/value pairs from the JSON
+                object that is posted, and create a new instance of the Child
+                model class, with the corresponding properties set.
+                If any of the validations fail, such as length of string values,
+                if a value is required, etc., then the API will respond that
+                it is a bad request.
+             */
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -157,7 +164,24 @@ namespace BangazonAPI.Controllers
             return CreatedAtRoute("GetSingleOrder", new { id = order.OrderId }, order);
         }
 
-        // PUT api/values/5
+        /*
+            Author: Jason Figueroa
+            URL: PUT api/order/{id}
+            Description:
+            This method handles put requests for order. Users need to 
+            provide a full order object to complete the update.
+            Example PUT Request:
+            PUT /api/order/18
+            {
+                "orderId": 18,
+                "paymentTypeId": 2,
+                "customerId": 1,
+                "customer": null,
+                "completedDate": "2018-01-29T00:00:00"
+            }
+
+            If successful, the return value will match the body of your PUT request.
+         */
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]Order order)
         {
@@ -183,12 +207,21 @@ namespace BangazonAPI.Controllers
                     throw;
                 }
             }
+            /*
+                The CreatedAtRoute method will return the newly created child in the
+                body of the response, and the Location meta-data header will contain
+                the URL for the new child resource
+            */
             return CreatedAtRoute("GetSingleOrder", new { id = order.OrderId }, order);
 
 
         }
 
-        // DELETE api/values/5
+        /*
+            Author: Jason Figueroa
+            URL: DELETE api/order/18
+            Description: This method handles DELETE requests for the order records.
+        */
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
