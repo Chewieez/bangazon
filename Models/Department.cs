@@ -16,7 +16,7 @@ namespace BangazonAPI.Models
         [Required]
         public double ExpenseBudget {get; set;}
 
-        IEnumerable<Employee> Employees;
+        public virtual ICollection<Employee> Employees { get; set; }
 
     }
 }

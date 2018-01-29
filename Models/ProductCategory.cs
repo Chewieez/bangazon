@@ -13,7 +13,7 @@ namespace BangazonAPI.Models
         [StringLength(55)]
         public string Name { get; set; }
 
-        IEnumerable<Product> Products;
+        public virtual ICollection<Product> Products { get; set; }
         
         
     }

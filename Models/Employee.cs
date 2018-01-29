@@ -23,7 +23,7 @@ namespace BangazonAPI.Models
         [Required]
         public bool Supervisor { get; set; }
 
-        IEnumerable <TrainingEmployee> TrainingEmployees;
+        public virtual ICollection <TrainingEmployee> TrainingEmployees { get; set; }
 
     }
 }

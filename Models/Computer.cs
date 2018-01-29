@@ -24,6 +24,6 @@ namespace BangazonAPI.Models
     [DataType(DataType.Date)]
     public DateTime? DecommissionDate { get; set; }
 
-    IEnumerable<ComputerEmployee> ComputerEmployees;
+    public virtual ICollection<ComputerEmployee> ComputerEmployees;
   }
 }
