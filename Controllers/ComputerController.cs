@@ -61,10 +61,10 @@ namespace BangazonAPI.Controllers
         }
 
         /*
-            Author: Krys Mathis
-            URL: GET api/product/{id}
+            Author: Jason Figueroa
+            URL: GET api/computer/{id}
             Description:
-            Returns a specific product based on ProductId
+            Returns a specific computer based on ComputerId
             Example GET response for "/api/computer/1":
             {
                 "computerId": 1,
