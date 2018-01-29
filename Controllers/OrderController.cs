@@ -40,7 +40,7 @@ namespace BangazonAPI.Controllers
 
         }
 
-        // GET api/single order with products
+        // GET api/orders/{id}
         [HttpGet("{id}", Name = "GetSingleOrderWithProducts")]
         public IActionResult Get(int id)
         {
@@ -51,50 +51,27 @@ namespace BangazonAPI.Controllers
 
             try
             {
-                // var order = _context.Order.Where(o => o.OrderId == id)
-
-                var productList = _context
-                .OrderProduct
-                .Where(o => o.OrderId == id)
-                .Select(o => o.Product).ToList();
-                // .Select(o => o.Product).ToList();
-
-                // foreach (var p in productList)
-                // {
-                //     Console.WriteLine(p.Name);
-                //     Console.WriteLine(p.Price);
-                //     Console.WriteLine(p.Quantity);
-                //     Console.WriteLine(p.ProductId);
-                // }
-                // .Select(o => o.Product);
-                
-
-                var order = _context
-                .Order
-                .Where(o => o.OrderId == id)
-                .Include("OrderProduct.Product")
-                .Select(o => new Order()
-                {
-                    OrderId = o.OrderId,
-                    CustomerId = o.CustomerId,
-                    PaymentTypeId = o.PaymentTypeId,
-                    OrderProducts = productList
-                });                
-                // .Include("Order");
-                // .Select(o =>o new Order(){
-                //     OrderId = id,
-                //     PaymentTypeId = o.PaymentTypeId,
-                //     CustomerId = o.CustomerId,
-                //     CompletedDate = o.CompletedDate
-                //     // OrderProducts = o.Product
-                // });                         
+                var order = _context.Order.Single(o => o.OrderId == id);                
+                var products = _context.Product.Where(p => _context.OrderProduct.Where(op => op.OrderId == id).Any(prod => p.ProductId == prod.ProductId)).Select(p => new {
+                    ProductId = p.ProductId,
+                    Name = p.Name,
+                    Price = p.Price,
+                    Quantity = p.Quantity
+                });    
 
                 if (order == null)
                 {
                     return NotFound();
                 }
 
-                return Ok(order);
+                return Ok(
+                    new {
+                        OrderId = id,
+                        CustomerId = order.CustomerId,
+                        PaymentTypeId = order.PaymentTypeId,
+                        Products = products
+                    }
+                );
             }
             catch (System.InvalidOperationException ex)
             {

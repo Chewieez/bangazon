@@ -18,7 +18,6 @@ namespace BangazonAPI.Models
         [DataType(DataType.Date)]
         public DateTime? CompletedDate { get; set; }
 
-        public virtual ICollection<Product> OrderProducts { get; set; }
-
+        public virtual ICollection<OrderProduct> OrderProducts { get; set; }
     }
 }
