@@ -20,25 +20,58 @@ namespace BangazonAPI.Controllers
             _context = ctx;
         }
 
-        // GET api/values
+        /*
+            Author: Krys Mathis
+            URL: GET api/trainingprogram
+            Description:
+            Returns the training program values from the database
+            Example GET response:
+            [ { trainingProgramId: 1,
+                name: 'AngualarJS Course',
+                startDate: '2018-02-12T00:00:00',
+                endDate: '2017-02-16T00:00:00',
+                maxAttendance: 25 },
+              { trainingProgramId: 2,
+                name: 'IT Security Training',
+                startDate: '2017-03-19T00:00:00',
+                endDate: '2017-03-23T00:00:00',
+                maxAttendance: 25 }
+            ]
+        */
         [HttpGet]
         public IActionResult Get()
         {
-            
+            // using the BangazonAPIContext return the values from the TrainingProgram table
             var trainingProgram = _context.TrainingProgram.ToList();
 
             if (trainingProgram == null)
             {
                 return NotFound();
             }
+            // values will be in JSON format
             return Ok(trainingProgram);
 
         }
 
-        // GET api/values/5
+         /*
+            Author: Krys Mathis
+            URL: GET api/trainingprogram/{id}
+            Description:
+            Returns a specific training program based on TrainingProgramId
+            Example GET response for "/api/trainingprogram/1":
+            { trainingProgramId: 1,
+                name: 'AngualarJS Course',
+                startDate: '2018-02-12T00:00:00',
+                endDate: '2017-02-16T00:00:00',
+                maxAttendance: 25 }
+         */
         [HttpGet("{id}", Name="GetSingleTrainingProgram")]
         public IActionResult Get(int id)
         {
+             /*
+                This condition validates the values in model binding.
+                In this case, it validates that the id value is an integer.
+             */
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -61,10 +94,40 @@ namespace BangazonAPI.Controllers
             }
         }
 
-        // POST api/values
+         /*
+            Author: Krys Mathis
+            URL: POST api/product/
+            Description:
+            This method handles post requests, which adds a
+            record to the database. When executing the POST request, do not
+            include the TrainingProgramId in the body of the request. The database will
+            assign a uniqure id value.
+
+            Example POST body:
+            {  name: 'AngualarJS Course',
+                startDate: '2018-02-12T00:00:00',
+                endDate: '2017-02-16T00:00:00',
+                maxAttendance: 25 }
+            
+            Assuming the newly created id is 14, the return value is:
+             {  trainingProgramId: 14,
+                name: 'AngualarJS Course',
+                startDate: '2018-02-12T00:00:00',
+                endDate: '2017-02-16T00:00:00',
+                maxAttendance: 25 }
+
+         */
         [HttpPost]
         public IActionResult Post([FromBody]TrainingProgram trainingProgram)
         {
+            /*
+                This method will extract the key/value pairs from the JSON
+                object that is posted, and create a new instance of the Child
+                model class, with the corresponding properties set.
+                If any of the validations fail, such as length of string values,
+                if a value is required, etc., then the API will respond that
+                it is a bad request.
+             */
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -90,7 +153,22 @@ namespace BangazonAPI.Controllers
             return CreatedAtRoute("GetSingleTrainingProgram", new { id = trainingProgram.TrainingProgramId }, trainingProgram);
         }
 
-        // PUT api/values/5
+        /*
+            Author: Krys Mathis
+            URL: PUT api/trainingprogram/{id}
+            Description:
+            This method handles post requests for training programs. Users need to 
+            provide a full object to complete the update.
+            Example PUT Request:
+            PUT /api/product/14
+            {  trainingProgramId: 14,
+                name: 'AngualarJS Course',
+                startDate: '2018-02-12T00:00:00',
+                endDate: '2017-02-16T00:00:00',
+                maxAttendance: 25 }
+
+            If successful, the return value will match the body of your PUT request.
+         */
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]TrainingProgram trainingProgram)
         {
@@ -121,7 +199,11 @@ namespace BangazonAPI.Controllers
 
         }
 
-        // DELETE api/values/5
+        /*
+            Author: Krys Mathis
+            URL: DELETE api/products/1
+            Description: This method handles DELETE requests for the training program records.
+         */
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
