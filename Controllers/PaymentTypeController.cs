@@ -117,7 +117,6 @@ namespace BangazonAPI.Controllers
             {
                 "name": "Apple Pay",
                 "customerId": 1,
-                "customer": null,
                 "accountNumber": 565722828
             }
 
@@ -178,7 +177,6 @@ namespace BangazonAPI.Controllers
                 "paymentTypeId": 9,
                 "name": "AmEx",
                 "customerId": 1,
-                "customer": null,
                 "accountNumber": 565722828
             }
 

@@ -55,7 +55,7 @@ namespace BangazonAPI.Controllers
         }
 
         /*
-            Author: Krys Mathis
+            Author: Dre Randaci
             URL: GET api/department/{id}
             Description:
             Returns a specific department based on DepartmentId
