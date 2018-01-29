@@ -18,11 +18,6 @@ namespace BangazonAPI.Controllers
          public OrderController(BangazonAPIContext ctx)
         {
             _context = ctx;
-
-            if(_context.Order.Count() == 0)
-			{
-                _context.SaveChanges();
-			}
         }
 
         // GET api/values
