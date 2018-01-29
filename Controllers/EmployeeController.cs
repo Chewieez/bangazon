@@ -97,6 +97,15 @@ namespace BangazonAPI.Controllers
             URL: POST api/employee
             Description:
             This method handles POST requests to create a single employee. 
+            Example POST Request for employee
+            {
+              "departmentId": 1,
+              "firstName": "Kenneth",
+              "lastName": "Allen",
+              "startDate": "2017-06-11",
+              "supervisor": false
+            }
+
         */
         [HttpPost]
         public IActionResult Post([FromBody]Employee employee)

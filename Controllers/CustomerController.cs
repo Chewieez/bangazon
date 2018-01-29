@@ -121,14 +121,20 @@ namespace BangazonAPI.Controllers
                 return NotFound();
             }
         }
-
-
+      
         /*
             Author: Greg Lawrence
             URL: POST api/customer
             Description:
             This method handles POST requests to create a single customer. 
+            Example POST Request for customer
+        {
+            
+            "firstName": "Stacy",
+            "lastName": "Gauger",
+        }
         */
+
         [HttpPost]
         public IActionResult Post([FromBody]Customer customer)
         {
@@ -136,9 +142,14 @@ namespace BangazonAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
+            
+            // Add a timestamp to customer CreationDate field for current date.  
+            customer.CreationDate = DateTime.Now;
 
+            // save customer to context file
             _context.Customer.Add(customer);
 
+            // try to save the data to database and catch any errors
             try
             {
                 _context.SaveChanges();
