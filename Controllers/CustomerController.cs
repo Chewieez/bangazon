@@ -121,14 +121,24 @@ namespace BangazonAPI.Controllers
                 return NotFound();
             }
         }
-
-
+      
         /*
             Author: Greg Lawrence
             URL: POST api/customer
             Description:
             This method handles POST requests to create a single customer. 
+            When executing the POST request, do not
+            include the CustomerId in the body of the request. The database will
+            assign a unique CustomerId.
+            Example POST Request for customer
+        {
+            
+            "firstName": "Stacy",
+            "lastName": "Gauger",
+        }
+
         */
+
         [HttpPost]
         public IActionResult Post([FromBody]Customer customer)
         {
@@ -136,9 +146,14 @@ namespace BangazonAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
+            
+            // Add a timestamp to customer CreationDate field for current date.  
+            customer.CreationDate = DateTime.Now;
 
+            // save customer to context file
             _context.Customer.Add(customer);
 
+            // try to save the data to database and catch any errors
             try
             {
                 _context.SaveChanges();
@@ -177,6 +192,14 @@ namespace BangazonAPI.Controllers
             URL: PUT api/customer/id
             Description:
             This method handles PUT requests to edit a single customer resource. You need to send in the entire object to edit including customerId, not just the fields you want to edit.  
+            Example PUT request:
+            {
+              "customerId": 1,
+              "firstName": "Stacy",
+              "lastName": "Gauger",
+              "creationDate": "2017-06-21T00:00:00",
+              "lastLoginDate": "2018-01-24T00:00:00"
+            } 
         */
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]Customer customer)

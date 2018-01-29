@@ -74,7 +74,7 @@ namespace BangazonAPI
 			/*********************************/
 			if (!context.TrainingProgram.Any())
 			{
-				context.TrainingProgram.Add(new TrainingProgram { Name = "AngualarJS Course", StartDate =  Convert.ToDateTime("02/12/2018"), EndDate = Convert.ToDateTime("02/16/2017"), MaxAttendance = 25 });
+				context.TrainingProgram.Add(new TrainingProgram { Name = "AngularJS Course", StartDate =  Convert.ToDateTime("02/12/2018"), EndDate = Convert.ToDateTime("02/16/2017"), MaxAttendance = 25 });
                 context.TrainingProgram.Add(new TrainingProgram { Name = "IT Security Training", StartDate =  Convert.ToDateTime("03/19/2017"), EndDate = Convert.ToDateTime("03/23/2017"), MaxAttendance = 25 });
                 context.TrainingProgram.Add(new TrainingProgram { Name = "Operating Systems Concepts", StartDate =  Convert.ToDateTime("02/26/2017"), EndDate = Convert.ToDateTime("03/02/2017"), MaxAttendance = 25 });
                 context.TrainingProgram.Add(new TrainingProgram { Name = "Systems Architecture", StartDate =  Convert.ToDateTime("04/16/2017"), EndDate = Convert.ToDateTime("04/20/2017"), MaxAttendance = 25 });
@@ -401,7 +401,7 @@ namespace BangazonAPI
 				}
 
 				trainingProgramId = (from tp in context.TrainingProgram 
-                   where tp.Name.Equals("AngualarJS Course")
+                   where tp.Name.Equals("AngularJS Course")
                    select tp.TrainingProgramId).Single();
 
 				departmentId = (from d in context.Department 
@@ -463,11 +463,7 @@ namespace BangazonAPI
 			/* Seeding Customer Table */
 			/**************************/
 			if (!context.Customer.Any())
-			{
-				/********************************************************************************/
-				/* commented out customers can be uncommented if we need or want more customers */
-				/********************************************************************************/
-				
+			{				
 				context.Customer.Add(new Customer { FirstName = "Stacy", LastName = "Gauger", CreationDate = Convert.ToDateTime("06/21/2017"), LastLoginDate = Convert.ToDateTime("01/24/2018") });
 				context.Customer.Add(new Customer { FirstName = "Stephan", LastName = "Adams", CreationDate = Convert.ToDateTime("07/11/2017"), LastLoginDate = Convert.ToDateTime("01/26/2018") });
 				context.Customer.Add(new Customer { FirstName = "Belle", LastName = "Martin", CreationDate = Convert.ToDateTime("07/06/2017"), LastLoginDate = Convert.ToDateTime("01/25/2018") });
@@ -610,7 +606,7 @@ namespace BangazonAPI
 
 				int paymentTypeId = (from pt in context.PaymentType 
                    where pt.CustomerId.Equals(customerId) && pt.Name.Equals("PayPal")
-                   select pt.CustomerId).Single();
+                   select pt.PaymentTypeId).Single();
 
 				context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("07/17/2017"), CustomerId = customerId, PaymentTypeId = paymentTypeId });
 				context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("08/21/2017"), CustomerId = customerId, PaymentTypeId = paymentTypeId });
@@ -625,7 +621,7 @@ namespace BangazonAPI
 
 				paymentTypeId = (from pt in context.PaymentType 
                    where pt.CustomerId.Equals(customerId) && pt.Name.Equals("PayPal")
-                   select pt.CustomerId).Single();
+                   select pt.PaymentTypeId).Single();
 
 				context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("09/02/2017"), CustomerId = customerId, PaymentTypeId = paymentTypeId });
 				context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("11/21/2017"), CustomerId = customerId, PaymentTypeId = paymentTypeId });
@@ -636,7 +632,7 @@ namespace BangazonAPI
 
 				paymentTypeId = (from pt in context.PaymentType 
                    where pt.CustomerId.Equals(customerId) && pt.Name.Equals("PayPal")
-                   select pt.CustomerId).Single();
+                   select pt.PaymentTypeId).Single();
 
 				context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("11/19/2017"), CustomerId = customerId, PaymentTypeId = paymentTypeId });
 				context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("11/23/2017"), CustomerId = customerId, PaymentTypeId = paymentTypeId });
@@ -651,7 +647,7 @@ namespace BangazonAPI
 
 				paymentTypeId = (from pt in context.PaymentType 
                    where pt.CustomerId.Equals(customerId) && pt.Name.Equals("PayPal")
-                   select pt.CustomerId).Single();
+                   select pt.PaymentTypeId).Single();
 
 				context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("12/09/2017"), CustomerId = customerId, PaymentTypeId = paymentTypeId });
 				context.Order.Add(new Order { CompletedDate = Convert.ToDateTime("12/11/2017"), CustomerId = customerId, PaymentTypeId = paymentTypeId });

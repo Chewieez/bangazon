@@ -46,7 +46,7 @@ namespace BangazonAPI.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            // variable to hold list of employees
+            // get the list of employees from database and store in variable
             var employee = _context.Employee.ToList();
 
             // error handling to send a Not Found return if there are no employees.
@@ -96,7 +96,19 @@ namespace BangazonAPI.Controllers
             Author: Greg Lawrence
             URL: POST api/employee
             Description:
-            This method handles POST requests to create a single employee. 
+            This method handles POST requests to create a single employee.
+            When executing the POST request, do not
+            include the EmployeeId in the body of the request. The database will
+            assign a unique EmployeeId.
+            Example POST Request for employee
+            {
+              "departmentId": 1,
+              "firstName": "Kenneth",
+              "lastName": "Allen",
+              "startDate": "2017-06-11",
+              "supervisor": false
+            }
+
         */
         [HttpPost]
         public IActionResult Post([FromBody]Employee employee)
@@ -137,7 +149,17 @@ namespace BangazonAPI.Controllers
             Author: Greg Lawrence
             URL: PUT api/employee/id
             Description:
-            This method handles PUT requests to edit a single employee resource. You need to send in the entire object to edit including employeeId, not just the fields you want to edit.  
+            This method handles PUT requests to edit a single employee resource. You need to send in the entire object to edit including employeeId, not just the fields you want to edit.
+            Example PUT request:
+            {
+              "employeeId": 1,
+              "departmentId": 1,
+              "department": null,
+              "firstName": "Kenneth",
+              "lastName": "Allen",
+              "startDate": "2017-06-11T00:00:00",
+              "supervisor": false
+            }
         */
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]Employee employee)
