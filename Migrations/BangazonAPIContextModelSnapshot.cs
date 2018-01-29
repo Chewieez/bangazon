@@ -68,13 +68,13 @@ namespace BangazonAPI.Migrations
                     b.Property<int>("CustomerId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("CreationDate");
+                    b.Property<DateTime?>("CreationDate");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(55);
 
-                    b.Property<DateTime>("LastLoginDate");
+                    b.Property<DateTime?>("LastLoginDate");
 
                     b.Property<string>("LastName")
                         .IsRequired()

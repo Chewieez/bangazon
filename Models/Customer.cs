@@ -16,13 +16,11 @@ namespace BangazonAPI.Models
         [StringLength(55)]
         public string LastName { get; set; }
         
-        [Required]
         [DataType(DataType.Date)]
-        public DateTime CreationDate { get; set; }
+        public DateTime? CreationDate { get; set; }
 
-        [Required]
         [DataType(DataType.Date)]
-        public DateTime LastLoginDate { get; set; }
+        public DateTime? LastLoginDate { get; set; }
 
         IEnumerable <Order> Orders;
         IEnumerable <PaymentType> PaymentTypes;
