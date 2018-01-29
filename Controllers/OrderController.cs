@@ -25,7 +25,7 @@ namespace BangazonAPI.Controllers
             }
         }
 
-        // GET api/orders
+        // GET api/order
         [HttpGet]
         public IActionResult Get()
         {
