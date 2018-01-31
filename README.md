@@ -845,6 +845,6 @@ http://localhost:5000/api/PaymentType/1
 ## Contributors
 
 [Jason Figueroa](https://github.com/jasonfigueroa)
-[Dre Randaci] (https://github.com/DreRandaci)
-[Krys Mathis] (https://github.com/krysmathis)
+[Dre Randaci](https://github.com/DreRandaci)
+[Krys Mathis](https://github.com/krysmathis)
 [Greg Lawrence](https://github.com/Chewieez)
