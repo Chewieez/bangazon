@@ -74,12 +74,12 @@ namespace BangazonAPI
 			/*********************************/
 			if (!context.TrainingProgram.Any())
 			{
-				context.TrainingProgram.Add(new TrainingProgram { Name = "AngularJS Course", StartDate =  Convert.ToDateTime("02/12/2018"), EndDate = Convert.ToDateTime("02/16/2017"), MaxAttendance = 25 });
-                context.TrainingProgram.Add(new TrainingProgram { Name = "IT Security Training", StartDate =  Convert.ToDateTime("03/19/2017"), EndDate = Convert.ToDateTime("03/23/2017"), MaxAttendance = 25 });
-                context.TrainingProgram.Add(new TrainingProgram { Name = "Operating Systems Concepts", StartDate =  Convert.ToDateTime("02/26/2017"), EndDate = Convert.ToDateTime("03/02/2017"), MaxAttendance = 25 });
-                context.TrainingProgram.Add(new TrainingProgram { Name = "Systems Architecture", StartDate =  Convert.ToDateTime("04/16/2017"), EndDate = Convert.ToDateTime("04/20/2017"), MaxAttendance = 25 });
-				context.TrainingProgram.Add(new TrainingProgram { Name = "Business Analysis", StartDate =  Convert.ToDateTime("04/16/2017"), EndDate = Convert.ToDateTime("04/20/2017"), MaxAttendance = 25 });
-				context.TrainingProgram.Add(new TrainingProgram { Name = "Project Management", StartDate =  Convert.ToDateTime("04/16/2017"), EndDate = Convert.ToDateTime("04/20/2017"), MaxAttendance = 25 });
+				context.TrainingProgram.Add(new TrainingProgram { Name = "AngularJS Course", StartDate =  Convert.ToDateTime("02/26/2018"), EndDate = Convert.ToDateTime("03/02/2018"), MaxAttendance = 25 });
+                context.TrainingProgram.Add(new TrainingProgram { Name = "IT Security Training", StartDate =  Convert.ToDateTime("03/19/2018"), EndDate = Convert.ToDateTime("03/23/2018"), MaxAttendance = 25 });
+                context.TrainingProgram.Add(new TrainingProgram { Name = "Operating Systems Concepts", StartDate =  Convert.ToDateTime("02/26/2018"), EndDate = Convert.ToDateTime("03/02/2018"), MaxAttendance = 25 });
+                context.TrainingProgram.Add(new TrainingProgram { Name = "Systems Architecture", StartDate =  Convert.ToDateTime("04/16/2018"), EndDate = Convert.ToDateTime("04/20/2018"), MaxAttendance = 25 });
+				context.TrainingProgram.Add(new TrainingProgram { Name = "Business Analysis", StartDate =  Convert.ToDateTime("04/16/2018"), EndDate = Convert.ToDateTime("04/20/2018"), MaxAttendance = 25 });
+				context.TrainingProgram.Add(new TrainingProgram { Name = "Project Management", StartDate =  Convert.ToDateTime("04/16/2018"), EndDate = Convert.ToDateTime("04/20/2018"), MaxAttendance = 25 });
 				context.SaveChanges();
 			}
 
