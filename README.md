@@ -255,6 +255,11 @@ http://localhost:5000/api/TrainingProgram/34
 ```
 
 ### DELETE (Only for future dates)
+This method handles DELETE requests for the TrainingProgram records. Requires that the TrainingProgramId of the record to be erased be placed at the end of the URL.
+
+You are only allowed to delete Training Programs that have a start Date in the future. 
+
+If successful, the object deleted will be returned.
 - Example URL:
 http://localhost:5000/api/TrainingProgram/57
 - Example DELETE Response:
