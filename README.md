@@ -79,7 +79,7 @@ http://localhost:5000/api/Department
 
 ### PUT
 This method handles put requests for the Department. Users need to 
-provide a DepartmentId at the end of the url and send a full PaymentType 
+provide a DepartmentId at the end of the url and send a full Department 
 object to complete the update.
 
 If successful, the return value will match the body of your PUT request. Requires that the DepartmentId of the record to be erased be placed at the end of the URL.
@@ -94,12 +94,177 @@ http://localhost:5000/api/Department/1
 }
 ```
 
+
 ## Employee
 Supports: GET, POST, PUT
+
+### GET
+This method will return an array containing all of the Employee records in the database
+- Example URL: 
+ http://localhost:5000/api/Employee
+- Example Response:
+```
+[
+  {
+    "employeeId": 1,
+    "departmentId": 1,
+    "firstName": "Kenneth",
+    "lastName": "Allen",
+    "startDate": "2017-06-11T00:00:00",
+    "supervisor": false
+  },
+  {
+    "employeeId": 2,
+    "departmentId": 3,
+    "firstName": "Sarah",
+    "lastName": "Angell",
+    "startDate": "2017-04-30T00:00:00",
+    "supervisor": false
+  }
+]
+```
+### GET Single Record
+Place the EmployeeId at the end of the url to retrieve just that record.
+
+- Example URL:
+http://localhost:5000/api/Employee/1
+- Example Response:
+```
+  {
+    "employeeId": 1,
+    "departmentId": 1,
+    "firstName": "Kenneth",
+    "lastName": "Allen",
+    "startDate": "2017-06-11T00:00:00",
+    "supervisor": false
+  }
+```
+
+### POST
+This method handles post requests, which adds a
+record to the database. When executing the POST request, do not
+include the EmployeeId in the body of the request. The database will
+assign a unique EmployeeId automatically.
+- Example URL:
+http://localhost:5000/api/Employee
+- Example POST Request:
+```
+{
+    "departmentId": 1,
+    "firstName": "Sandy",
+    "lastName": "Williams",
+    "startDate": "2/2/2018",
+    "supervisor": false
+}
+```
+
+### PUT
+This method handles put requests for the Employee. Users need to 
+provide a EmployeeId at the end of the url and send a full Employee 
+object to complete the update.
+- Example URL:
+http://localhost:5000/api/Employee/1
+- Example PUT Request:
+```
+{
+    "employeeId": 1,
+    "departmentId": 1,
+    "firstName": "Sandy",
+    "lastName": "Blake Williams",
+    "startDate": "2/2/2018",
+    "supervisor": true
+}
+```
 
 ## Training Program
 Supports: GET, POST, PUT, DELETE (future start dates only)
 
+
+### GET
+This method will return an array containing all of the TrainingProgram records in the database
+- Example URL: 
+ http://localhost:5000/api/TrainingProgram
+- Example Response:
+```
+[
+  {
+    "trainingProgramId": 34,
+    "name": "IT Security Training",
+    "startDate": "2017-03-19T00:00:00",
+    "endDate": "2017-03-23T00:00:00",
+    "maxAttendance": 25
+  },
+  {
+    "trainingProgramId": 35,
+    "name": "Operating Systems Concepts",
+    "startDate": "2017-02-26T00:00:00",
+    "endDate": "2017-03-02T00:00:00",
+    "maxAttendance": 25
+  }
+]
+```
+### GET Single Record
+Place the TrainingProgramId at the end of the url to retrieve just that record.
+- Example URL:
+http://localhost:5000/api/TrainingProgram/34
+- Example Response:
+```
+  {
+    "trainingProgramId": 34,
+    "name": "IT Security Training",
+    "startDate": "2017-03-19T00:00:00",
+    "endDate": "2017-03-23T00:00:00",
+    "maxAttendance": 25
+  }
+```
+
+### POST
+This method handles post requests, which adds a
+record to the database. When executing the POST request, do not
+include the TrainingProgramId in the body of the request. The database will
+assign a unique TrainingProgramId automatically.
+- Example URL:
+http://localhost:5000/api/TrainingProgram
+- Example POST Request:
+```
+{
+    "name": "Sales and Accounting",
+    "startDate": "2017-03-19T00:00:00",
+    "endDate": "2017-03-23T00:00:00",
+    "maxAttendance": 10
+}
+```
+
+### PUT
+This method handles put requests for the TrainingProgram. Users need to 
+provide a TrainingProgramId at the end of the url and send a full TrainingProgram 
+object to complete the update.
+- Example URL:
+http://localhost:5000/api/TrainingProgram/34
+- Example PUT Request:
+```
+{
+    "trainingProgramId": 34,
+    "name": "IT Security Training",
+    "startDate": "2017-03-19T00:00:00",
+    "endDate": "2017-03-23T00:00:00",
+    "maxAttendance": 30
+}
+```
+
+### DELETE (Only for future dates)
+- Example URL:
+http://localhost:5000/api/TrainingProgram/57
+- Example DELETE Response:
+```
+{
+  "trainingProgramId": 57,
+  "name": "Sales and Accounting",
+  "startDate": "2018-02-20T00:00:00",
+  "endDate": "2018-02-21T00:00:00",
+  "maxAttendance": 10
+}
+```
 
 
 ## Computer Resources
