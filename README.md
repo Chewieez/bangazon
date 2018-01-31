@@ -1,5 +1,5 @@
 # Bangazon-API
-The Bangazon-API provides users with access to information about the Bangazon organization. The company provides information from two domains:
+The Bangazon-API provides users with access to information about the Bangazon organization. The company provides information from two categories:
 * The **company** itself including Employees, Training Programs and Computer Equipment
 * The Bangazon **App** including Customers, Products and Orders
 
