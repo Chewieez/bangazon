@@ -41,7 +41,7 @@ namespace BangazonAPI.Controllers
             URL-2: GET api/customer/?active=false
             Description:
             This method handles GET requests for the customer resource. When 
-            using the optional paramater a list of customers that either 
+            using the optional parameter a list of customers that either 
             have orders:
                 /api/customer/?active=true - customers that have placed orders
                 /api/customer/?active=false - customers without orders
@@ -93,7 +93,7 @@ namespace BangazonAPI.Controllers
             Author: Greg Lawrence
             URL: GET api/customer/id
             Description:
-            This method handles GET requests for a single customer. 
+            This method handles GET requests for a single customer by placing the CustomerId at the end of the url. 
         */
         [HttpGet("{id:int}", Name="GetSingleCustomer")]
         public IActionResult Get(int id)

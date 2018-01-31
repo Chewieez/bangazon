@@ -26,20 +26,22 @@ namespace BangazonAPI.Controllers
             Description:
             Returns the paymentType values from the database
             Example GET response:
-           {
-                "paymentTypeId": 1,
-                "name": "PayPal",
-                "customerId": 1,
-                "customer": null,
-                "accountNumber": 11111
-            },
-            {
-                "paymentTypeId": 2,
-                "name": "Apple Pay",
-                "customerId": 1,
-                "customer": null,
-                "accountNumber": 22221
-            }
+            [
+                {
+                    "paymentTypeId": 1,
+                    "name": "PayPal",
+                    "customerId": 1,
+                    "customer": null,
+                    "accountNumber": 11111
+                },
+                {
+                    "paymentTypeId": 2,
+                    "name": "Apple Pay",
+                    "customerId": 1,
+                    "customer": null,
+                    "accountNumber": 22221
+                }
+            ]
         */
 
         [HttpGet]
@@ -169,7 +171,7 @@ namespace BangazonAPI.Controllers
             Author: Dre Randaci
             URL: PUT api/PaymentType/{id}
             Description:
-            This method handles post requests for the PaymentType. Users need to 
+            This method handles put requests for the PaymentType. Users need to 
             provide a full PaymentType object to complete the update.
             Example PUT Request:
             PUT /api/PaymentType/9
