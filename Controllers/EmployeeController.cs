@@ -68,6 +68,8 @@ namespace BangazonAPI.Controllers
         [HttpGet("{id}", Name = "GetSingleEmployee")]
         public IActionResult Get(int id)
         {
+            // The id parameter is used to find the single Employee to return
+
             // error handling to check if the user inputted the correct info to use API, in this case, an integer
             if (!ModelState.IsValid)
             {
@@ -113,6 +115,8 @@ namespace BangazonAPI.Controllers
         [HttpPost]
         public IActionResult Post([FromBody]Employee employee)
         {
+            // The employee parameter is an object that includes all the information for an employee and will be written to the database
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -164,6 +168,9 @@ namespace BangazonAPI.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]Employee employee)
         {
+            // The employee parameter is an object that includes all the information for a employee and will be written to the database
+
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -192,7 +199,7 @@ namespace BangazonAPI.Controllers
         /*
             Author: Greg Lawrence
             Description:
-            This method checks if a employee with the passed in Id exists in the database and returns True or False. 
+            This method checks if an employee with the passed in Id exists in the database and returns True or False. 
         */
         private bool EmployeeExists(int EmployeeId)
         {

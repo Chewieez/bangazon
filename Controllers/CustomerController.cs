@@ -98,13 +98,15 @@ namespace BangazonAPI.Controllers
         [HttpGet("{id:int}", Name="GetSingleCustomer")]
         public IActionResult Get(int id)
         {
+            // The id parameter is used to find the record of the customer
+
             // error handling to check if the user inputted the correct info to use API, in this case, an integer
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            // search database context and try to find a match for the employee id submitted
+            // search database context and try to find a match for the id (employeeId) passed in
             try
             {
                 Customer customer = _context.Customer.Single(c => c.CustomerId == id);
@@ -138,10 +140,13 @@ namespace BangazonAPI.Controllers
         }
 
         */
+        
+                             
 
         [HttpPost]
         public IActionResult Post([FromBody]Customer customer)
         {
+            // The customer parameter is an object that includes all the information for a customer and will be written to the database
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -204,6 +209,8 @@ namespace BangazonAPI.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]Customer customer)
         {
+            // The customer parameter is an object that includes all the information for a customer and will be written to the database
+
             // error handling to check if the user inputted the correct info to use API, in this case, an integer
             if (!ModelState.IsValid)
             {
@@ -235,7 +242,7 @@ namespace BangazonAPI.Controllers
          /*
             Author: Greg Lawrence
             Description:
-            This method checks if a employee with the passed in Id exists in the database True or False.  
+            This method checks if a employee with the passed in Id exists in the database and returns True or False.  
         */        
         private bool CustomerExists(int CustomerId)
         {
