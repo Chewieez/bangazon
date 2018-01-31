@@ -81,10 +81,12 @@ http://localhost:5000/api/Department/1
 }
 ```
 
+
 ## Employee
 Supports: GET, POST, PUT
 
 ### GET
+This method will return an array containing all of the Employee records in the database
 - Example URL: 
  http://localhost:5000/api/Employee
 - Example Response:
@@ -109,6 +111,8 @@ Supports: GET, POST, PUT
 ]
 ```
 ### GET Single Record
+Place the EmployeeId at the end of the url to retrieve just that record.
+
 - Example URL:
 http://localhost:5000/api/Employee/1
 - Example Response:
@@ -124,6 +128,10 @@ http://localhost:5000/api/Employee/1
 ```
 
 ### POST
+This method handles post requests, which adds a
+record to the database. When executing the POST request, do not
+include the EmployeeId in the body of the request. The database will
+assign a unique EmployeeId automatically.
 - Example URL:
 http://localhost:5000/api/Employee
 - Example POST Request:
@@ -138,6 +146,9 @@ http://localhost:5000/api/Employee
 ```
 
 ### PUT
+This method handles put requests for the Employee. Users need to 
+provide a EmployeeId at the end of the url and send a full Employee 
+object to complete the update.
 - Example URL:
 http://localhost:5000/api/Employee/1
 - Example PUT Request:
@@ -156,6 +167,7 @@ http://localhost:5000/api/Employee/1
 Supports: GET, POST, PUT, DELETE (future start dates only)
 
 ### GET
+This method will return an array containing all of the TrainingProgram records in the database
 - Example URL: 
  http://localhost:5000/api/TrainingProgram
 - Example Response:
@@ -178,6 +190,7 @@ Supports: GET, POST, PUT, DELETE (future start dates only)
 ]
 ```
 ### GET Single Record
+Place the TrainingProgramId at the end of the url to retrieve just that record.
 - Example URL:
 http://localhost:5000/api/TrainingProgram/34
 - Example Response:
@@ -192,6 +205,10 @@ http://localhost:5000/api/TrainingProgram/34
 ```
 
 ### POST
+This method handles post requests, which adds a
+record to the database. When executing the POST request, do not
+include the TrainingProgramId in the body of the request. The database will
+assign a unique TrainingProgramId automatically.
 - Example URL:
 http://localhost:5000/api/TrainingProgram
 - Example POST Request:
@@ -205,6 +222,9 @@ http://localhost:5000/api/TrainingProgram
 ```
 
 ### PUT
+This method handles put requests for the TrainingProgram. Users need to 
+provide a TrainingProgramId at the end of the url and send a full TrainingProgram 
+object to complete the update.
 - Example URL:
 http://localhost:5000/api/TrainingProgram/34
 - Example PUT Request:
