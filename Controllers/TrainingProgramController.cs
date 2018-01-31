@@ -203,12 +203,14 @@ namespace BangazonAPI.Controllers
             Author: Krys Mathis
             URL: DELETE api/products/1
             Description: This method handles DELETE requests for the training program records.
+            Only Future Training Programs are the allowed to deleted
          */
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
             TrainingProgram trainingProgram = _context.TrainingProgram.Single(t => t.TrainingProgramId == id && t.StartDate > DateTime.Now);
 
+            
             if (trainingProgram == null)
             {
                 return NotFound();
