@@ -94,6 +94,7 @@ http://localhost:5000/api/Department/1
 }
 ```
 
+<br>
 
 ## Employee
 Supports: GET, POST, PUT
@@ -175,6 +176,7 @@ http://localhost:5000/api/Employee/1
     "supervisor": true
 }
 ```
+<br>
 
 ## Training Program
 Supports: GET, POST, PUT, DELETE (future start dates only)
@@ -266,6 +268,7 @@ http://localhost:5000/api/TrainingProgram/57
 }
 ```
 
+<br>
 
 ## Computer Resources
 Supports: GET, POST, PUT, DELETE
@@ -469,6 +472,7 @@ If successful, the object deleted will be returned.
 - Example URL:
 http://localhost:5000/api/Order/1
 
+<br>
 
 ## Product
 Supports: GET, POST, PUT, DELETE
@@ -583,7 +587,7 @@ If successful, the object deleted will be returned.
 - Example URL:
 http://localhost:5000/api/Product/1
 
-
+<br>
 
 ## Customer
 Supports: GET, POST, PUT
@@ -680,6 +684,7 @@ http://localhost:5000/api/Customer/1
     "lastLoginDate": "2018-01-30T00:00:00"
 } 
 ```
+<br>
 
 
 ## Product Category
@@ -829,3 +834,12 @@ If successful, the object deleted will be returned.
 - Example URL:
 http://localhost:5000/api/PaymentType/1
 
+<br><br>
+
+
+## Contributors
+
+[Jason Figueroa](https://github.com/jasonfigueroa)
+[Dre Randaci] (https://github.com/DreRandaci)
+[Krys Mathis] (https://github.com/krysmathis)
+[Greg Lawrence](https://github.com/Chewieez)
