@@ -31,7 +31,7 @@ Supports: GET, POST, PUT
 ### GET
 This method will return an array containing all of the Department records in the database
 - Example URL: 
- http://localhost:5000/api/Department
+ http://bangazon.com:5000/api/Department
 - Example Response:
 ```
 [
@@ -51,7 +51,7 @@ This method will return an array containing all of the Department records in the
 Place the DepartmentId at the end of the url to retrieve just that record.
 
 - Example URL:
-http://localhost:5000/api/Department/1
+http://bangazon.com:5000/api/Department/1
 - Example Response:
 ```
 {
@@ -68,7 +68,7 @@ include the DepartmentId in the body of the request. The database will
 assign a unique DepartmentId automatically.
 
 - Example URL:
-http://localhost:5000/api/Department
+http://bangazon.com:5000/api/Department
 - Example POST Request:
 ```
 {
@@ -84,7 +84,7 @@ object to complete the update.
 
 If successful, the return value will match the body of your PUT request. Requires that the DepartmentId of the record to be erased be placed at the end of the URL.
 - Example URL:
-http://localhost:5000/api/Department/1
+http://bangazon.com:5000/api/Department/1
 - Example PUT Request:
 ```
 {
@@ -102,7 +102,7 @@ Supports: GET, POST, PUT
 ### GET
 This method will return an array containing all of the Employee records in the database
 - Example URL: 
- http://localhost:5000/api/Employee
+ http://bangazon.com:5000/api/Employee
 - Example Response:
 ```
 [
@@ -128,7 +128,7 @@ This method will return an array containing all of the Employee records in the d
 Place the EmployeeId at the end of the url to retrieve just that record.
 
 - Example URL:
-http://localhost:5000/api/Employee/1
+http://bangazon.com:5000/api/Employee/1
 - Example Response:
 ```
   {
@@ -147,7 +147,7 @@ record to the database. When executing the POST request, do not
 include the EmployeeId in the body of the request. The database will
 assign a unique EmployeeId automatically.
 - Example URL:
-http://localhost:5000/api/Employee
+http://bangazon.com:5000/api/Employee
 - Example POST Request:
 ```
 {
@@ -164,7 +164,7 @@ This method handles put requests for the Employee. Users need to
 provide a EmployeeId at the end of the url and send a full Employee 
 object to complete the update.
 - Example URL:
-http://localhost:5000/api/Employee/1
+http://bangazon.com:5000/api/Employee/1
 - Example PUT Request:
 ```
 {
@@ -185,7 +185,7 @@ Supports: GET, POST, PUT, DELETE (future start dates only)
 ### GET
 This method will return an array containing all of the TrainingProgram records in the database
 - Example URL: 
- http://localhost:5000/api/TrainingProgram
+ http://bangazon.com:5000/api/TrainingProgram
 - Example Response:
 ```
 [
@@ -208,7 +208,7 @@ This method will return an array containing all of the TrainingProgram records i
 ### GET Single Record
 Place the TrainingProgramId at the end of the url to retrieve just that record.
 - Example URL:
-http://localhost:5000/api/TrainingProgram/34
+http://bangazon.com:5000/api/TrainingProgram/34
 - Example Response:
 ```
   {
@@ -226,7 +226,7 @@ record to the database. When executing the POST request, do not
 include the TrainingProgramId in the body of the request. The database will
 assign a unique TrainingProgramId automatically.
 - Example URL:
-http://localhost:5000/api/TrainingProgram
+http://bangazon.com:5000/api/TrainingProgram
 - Example POST Request:
 ```
 {
@@ -242,7 +242,7 @@ This method handles put requests for the TrainingProgram. Users need to
 provide a TrainingProgramId at the end of the url and send a full TrainingProgram 
 object to complete the update.
 - Example URL:
-http://localhost:5000/api/TrainingProgram/34
+http://bangazon.com:5000/api/TrainingProgram/34
 - Example PUT Request:
 ```
 {
@@ -261,7 +261,7 @@ You are only allowed to delete Training Programs that have a start Date in the f
 
 If successful, the object deleted will be returned.
 - Example URL:
-http://localhost:5000/api/TrainingProgram/57
+http://bangazon.com:5000/api/TrainingProgram/57
 - Example DELETE Response:
 ```
 {
@@ -281,7 +281,7 @@ Supports: GET, POST, PUT, DELETE
 ### GET
 This method will return an array containing all of the Computer records in the database.
 - Example URL: 
- http://localhost:5000/api/Computer
+ http://bangazon.com:5000/api/Computer
 - Example Response:
 ```
 [   
@@ -305,7 +305,7 @@ This method will return an array containing all of the Computer records in the d
 Place the ComputerId at the end of the url to retrieve just that Computer record. 
 
 - Example URL:
-http://localhost:5000/api/Computer/1
+http://bangazon.com:5000/api/Computer/1
 - Example Response:
 ```
 {
@@ -323,7 +323,7 @@ record to the database. When executing the POST request, do not
 include the ComputerId in the body of the request. The database will
 assign a unique ComputerId automatically.
 - Example URL:
-http://localhost:5000/api/Computer
+http://bangazon.com:5000/api/Computer
 - Example POST Request:
 ```
 {
@@ -351,7 +351,7 @@ object to complete the update.
 
 If successful, the return value will match the body of your PUT request.
 - Example URL:
-http://localhost:5000/api/Computer/18
+http://bangazon.com:5000/api/Computer/18
 - Example PUT Request:
 ```
 {
@@ -368,7 +368,7 @@ This method handles DELETE requests for the Computer records. Requires that the 
 
 If successful, the object deleted will be returned.
 - Example URL:
-http://localhost:5000/api/Computer/1
+http://bangazon.com:5000/api/Computer/1
 
 
 
@@ -379,7 +379,7 @@ Supports: GET, POST, PUT, DELETE
 ### GET
 This method will return an array containing all of the Order records in the database.
 - Example URL: 
- http://localhost:5000/api/Order
+ http://bangazon.com:5000/api/Order
 - Example Response:
 ```
 [   
@@ -403,7 +403,7 @@ This method will return an array containing all of the Order records in the data
 Place the OrderId at the end of the url to retrieve just that order record. 
 All of the associated products for the order will be included as an array assigned to the "products" key.
 - Example URL:
-http://localhost:5000/api/Order/1
+http://bangazon.com:5000/api/Order/1
 - Example Response:
 ```
 {
@@ -432,7 +432,7 @@ record to the database. When executing the POST request, do not
 include the OrderId in the body of the request. The database will
 assign a unique OrderId automatically. 
 - Example URL:
-http://localhost:5000/api/Order
+http://bangazon.com:5000/api/Order
 - Example POST Request:
 ```
 {
@@ -459,7 +459,7 @@ object to complete the update.
 
 If successful, the return value will match the body of your PUT request.
 - Example URL:
-http://localhost:5000/api/Order/18
+http://bangazon.com:5000/api/Order/18
 - Example PUT Request:
 ```
 {
@@ -475,7 +475,7 @@ This method handles DELETE requests for the Order records. Requires that the Ord
 
 If successful, the object deleted will be returned.
 - Example URL:
-http://localhost:5000/api/Order/1
+http://bangazon.com:5000/api/Order/1
 
 <br>
 
@@ -485,7 +485,7 @@ Supports: GET, POST, PUT, DELETE
 ### GET
 This method will return an array containing all of the Product records in the database.
 - Example URL: 
- http://localhost:5000/api/Product
+ http://bangazon.com:5000/api/Product
 - Example Response:
 ```
 [   
@@ -516,7 +516,7 @@ This method will return an array containing all of the Product records in the da
 Place the ProductId at the end of the url to retrieve just that record.
 If successful, the return value will match the body of your POST request.
 - Example URL:
-http://localhost:5000/api/Product/1
+http://bangazon.com:5000/api/Product/1
 - Example Response:
 ```
 {   
@@ -538,7 +538,7 @@ record to the database. When executing the POST request, do not
 include the ProductId in the body of the request. The database will
 assign a unique ProductId automatically.
 - Example URL:
-http://localhost:5000/api/Product
+http://bangazon.com:5000/api/Product
 - Example POST Request:
 ```
 {   
@@ -571,7 +571,7 @@ object to complete the update.
 
 If successful, the return value will match the body of your PUT request.
 - Example URL:
-http://localhost:5000/api/Product/1
+http://bangazon.com:5000/api/Product/1
 - Example PUT Request:
 ```
 {   
@@ -590,7 +590,7 @@ This method handles DELETE requests for the Product records. Requires that the P
 
 If successful, the object deleted will be returned.
 - Example URL:
-http://localhost:5000/api/Product/1
+http://bangazon.com:5000/api/Product/1
 
 <br>
 
@@ -604,7 +604,7 @@ have placed orders or have not.:
     /api/customer/?active=true - customers that have placed orders
     /api/customer/?active=false - customers without orders
 - Example URL: 
- http://localhost:5000/api/Customer
+ http://bangazon.com:5000/api/Customer
 - Example Response:
 ```
 [   
@@ -634,7 +634,7 @@ have placed orders or have not.:
 Place the CustomerId at the end of the url to retrieve just that record.
 If successful, the return value will match the body of your POST request.
 - Example URL:
-http://localhost:5000/api/Customer/1
+http://bangazon.com:5000/api/Customer/1
 - Example Response:
 ```
 { 
@@ -649,7 +649,7 @@ record to the database. When executing the POST request, do not
 include the CustomerId in the body of the request. The database will
 assign a unique CustomerId automatically. The database will also handle adding a CreationDate automatically. All you are required to pass in upon Customer creation is first and last name.
 - Example URL:
-http://localhost:5000/api/Customer
+http://bangazon.com:5000/api/Customer
 - Example POST Request:
 ```
 { 
@@ -678,7 +678,7 @@ object to complete the update.
 
 If successful, the return value will match the body of your PUT request.
 - Example URL:
-http://localhost:5000/api/Customer/1
+http://bangazon.com:5000/api/Customer/1
 - Example PUT Request:
 ```
 {
@@ -698,7 +698,7 @@ Supports: GET, POST, PUT, DELETE
 ### GET
 This method will return an array containing all of the ProductCategory records in the database.
 - Example URL: 
- http://localhost:5000/api/ProductCategory
+ http://bangazon.com:5000/api/ProductCategory
 - Example Response:
 ```
 [   { ProductCategoryId: 1, name: 'Jewelry & Accessories' },
@@ -711,7 +711,7 @@ This method will return an array containing all of the ProductCategory records i
 Place the ProductCategoryId at the end of the url to retrieve just that record.
 If successful, the return value will match the body of your POST request.
 - Example URL:
-http://localhost:5000/api/ProductCategory/1
+http://bangazon.com:5000/api/ProductCategory/1
 - Example Response:
 ```
 { 
@@ -726,7 +726,7 @@ record to the database. When executing the POST request, do not
 include the ProductCategoryId in the body of the request. The database will
 assign a unique ProductCategoryId automatically.
 - Example URL:
-http://localhost:5000/api/ProductCategory
+http://bangazon.com:5000/api/ProductCategory
 - Example POST Request:
 ```
 { name: 'Jewelry & Accessories' }
@@ -739,7 +739,7 @@ object to complete the update.
 
 If successful, the return value will match the body of your PUT request.
 - Example URL:
-http://localhost:5000/api/ProductCategory/1
+http://bangazon.com:5000/api/ProductCategory/1
 - Example PUT Request:
 ```
 { 
@@ -753,7 +753,7 @@ This method handles DELETE requests for the ProductCategory records. Requires th
 
 If successful, the object deleted will be returned.
 - Example URL:
-http://localhost:5000/api/ProductCategory/1
+http://bangazon.com:5000/api/ProductCategory/1
 
 
 
@@ -763,7 +763,7 @@ Supports: GET, POST, PUT, DELETE
 ### GET
 This method will return an array containing all of the PaymentType records in the database.
 - Example URL: 
- http://localhost:5000/api/PaymentType
+ http://bangazon.com:5000/api/PaymentType
 - Example Response:
 ```
 [
@@ -787,7 +787,7 @@ This method will return an array containing all of the PaymentType records in th
 Place the PaymentTypeId at the end of the url to retrieve just that record.
 If successful, the return value will match the body of your POST request.
 - Example URL:
-http://localhost:5000/api/PaymentType/1
+http://bangazon.com:5000/api/PaymentType/1
 - Example Response:
 ```
 {
@@ -805,7 +805,7 @@ record to the database. When executing the POST request, do not
 include the paymentTypeId in the body of the request. The database will
 assign a unique paymentTypeId automatically.
 - Example URL:
-http://localhost:5000/api/PaymentType
+http://bangazon.com:5000/api/PaymentType
 - Example POST Request:
 ```
 {
@@ -822,7 +822,7 @@ object to complete the update.
 
 If successful, the return value will match the body of your PUT request.
 - Example URL:
-http://localhost:5000/api/PaymentType/1
+http://bangazon.com:5000/api/PaymentType/1
 - Example PUT Request:
 ```
 {
@@ -837,7 +837,7 @@ This method handles DELETE requests for the PaymentType records. Requires that t
 
 If successful, the object deleted will be returned.
 - Example URL:
-http://localhost:5000/api/PaymentType/1
+http://bangazon.com:5000/api/PaymentType/1
 
 <br><br>
 
