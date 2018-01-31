@@ -82,7 +82,7 @@ This method handles put requests for the Department. Users need to
 provide a DepartmentId at the end of the url and send a full PaymentType 
 object to complete the update.
 
-If successful, the return value will match the body of your PUT request.
+If successful, the return value will match the body of your PUT request. Requires that the DepartmentId of the record to be erased be placed at the end of the URL.
 - Example URL:
 http://localhost:5000/api/Department/1
 - Example PUT Request:
@@ -106,10 +106,122 @@ Supports: GET, POST, PUT, DELETE
 ## Order
 Supports: GET, POST, PUT, DELETE
 
+
+
 ## Product
 Supports: GET, POST, PUT, DELETE
 
+### GET
+This method will return an array containing all of the Product records in the database.
+- Example URL: 
+ http://localhost:5000/api/Product
+- Example Response:
+```
+[   
+    { 
+        productId: 1,
+        productCategoryId: 2,
+        productCategory: null,
+        customerId: 1,
+        customer: null,
+        name: 'Knit Hat',
+        price: 25,
+        description: 'A beautifully knitted hat for a toddler girl.',
+        quantity: 2 
+    },
+    {   productId: 2,
+        productCategoryId: 2,
+        productCategory: null,
+        customerId: 1,
+        customer: null,
+        name: 'Knit Scarf',
+        price: 25,
+        description: 'A beautifully knitted scarf for a toddler girl.',
+        quantity: 4 
+    }
+]
+```
+### GET Single Record
+Place the ProductId at the end of the url to retrieve just that record.
+If successful, the return value will match the body of your POST request.
+- Example URL:
+http://localhost:5000/api/Product/1
+- Example Response:
+```
+{   
+    productId: 1,
+    productCategoryId: 2,
+    productCategory: null,
+    customerId: 1,
+    customer: null,
+    name: 'Knit Hat',
+    price: 25,
+    description: 'A beautifully knitted hat for a toddler girl.',
+    quantity: 2 
+}
+```
 
+### POST
+This method handles post requests, which adds a
+record to the database. When executing the POST request, do not
+include the ProductId in the body of the request. The database will
+assign a unique ProductId automatically. The database will also handle adding a CreationDate automatically. All you are required to pass in upon Product creation is first and last name.
+- Example URL:
+http://localhost:5000/api/Product
+- Example POST Request:
+```
+{   
+    productCategoryId: 2,
+    customerId: 1,
+    name: 'Bowler Hat',
+    price: 25,
+    description: 'Charlie Chaplin.',
+    quantity: 2 
+    }
+
+Example return: Assuming the newly created id is 14:
+{   productId: 14,
+    productCategoryId: 2,
+    productCategory: null,
+    customerId: 1,
+    customer: null,
+    name: 'Bowler Hat',
+    price: 25,
+    description: 'Charlie Chaplin.',
+    quantity: 2 
+}
+
+```
+
+### PUT
+This method handles put requests for the Product. Users need to 
+provide a ProductId at the end of the url and send a full Product 
+object to complete the update.
+
+If successful, the return value will match the body of your PUT request.
+- Example URL:
+http://localhost:5000/api/Product/1
+- Example PUT Request:
+```
+{   
+    productId: 14,
+    productCategoryId: 2,
+    customerId: 1,
+    name: 'Bowler Hat',
+    price: 25,
+    description: 'Charlie Chaplin.',
+    quantity: 2 
+}
+```
+
+### DELETE
+This method handles DELETE requests for the Product records. Requires that the ProductId of the record to be erased be placed at the end of the URL.
+
+If successful, the object deleted will be returned.
+- Example URL:
+http://localhost:5000/api/Product/1
+
+---------------------
 
 ## Customer
 Supports: GET, POST, PUT
@@ -207,14 +319,6 @@ http://localhost:5000/api/Customer/1
 } 
 ```
 
-### DELETE
-This method handles DELETE requests for the Customer records. Only requires the ID of the resource/row being deleted
-
-If successful, the object deleted will be returned.
-- Example URL:
-http://localhost:5000/api/Customer/1
-
-
 
 ## Product Category
 Supports: GET, POST, PUT, DELETE
@@ -273,7 +377,7 @@ http://localhost:5000/api/ProductCategory/1
 ```
 
 ### DELETE
-This method handles DELETE requests for the ProductCategory records. Only requires the ID of the resource/row being deleted
+This method handles DELETE requests for the ProductCategory records. Requires that the ProductCategoryId of the record to be erased be placed at the end of the URL.
 
 If successful, the object deleted will be returned.
 - Example URL:
@@ -357,7 +461,7 @@ http://localhost:5000/api/PaymentType/1
 ```
 
 ### DELETE
-This method handles DELETE requests for the PaymentType records. Only requires the ID of the resource/row being deleted
+This method handles DELETE requests for the PaymentType records. Requires that the PaymentTypeId of the record to be erased be placed at the end of the URL.
 
 If successful, the object deleted will be returned.
 - Example URL:
