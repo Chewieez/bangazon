@@ -103,9 +103,111 @@ Supports: GET, POST, PUT, DELETE (future start dates only)
 ## Computer Resources
 Supports: GET, POST, PUT, DELETE
 
+
+
 ## Order
 Supports: GET, POST, PUT, DELETE
 
+### GET
+This method will return an array containing all of the Order records in the database.
+- Example URL: 
+ http://localhost:5000/api/Order
+- Example Response:
+```
+[   
+    {
+        "orderId": 1,
+        "paymentTypeId": 1,
+        "customerId": 1,
+        "customer": null,
+        "completedDate": "2017-07-17T00:00:00"
+    },
+    {
+        "orderId": 2,
+        "paymentTypeId": 16,
+        "customerId": 16,
+        "customer": null,
+        "completedDate": "2017-12-09T00:00:00"
+    }
+]
+```
+### GET Single Record
+Place the OrderId at the end of the url to retrieve just that order record. 
+All of the associated products for the order will be included as an array assigned to the "products" key.
+- Example URL:
+http://localhost:5000/api/Order/1
+- Example Response:
+```
+{
+    "orderId": 1,
+    "customerId": 1,
+    "paymentTypeId": 1,
+    "products": [
+    {
+        "productId": 1,
+        "name": "Knit Hat",
+        "price": 25,
+        "quantity": 2
+    },
+    {
+        "productId": 2,
+        "name": "Knit Scarf",
+        "price": 25,
+        "quantity": 4
+    }
+} 
+```
+
+### POST
+This method handles post requests, which adds a
+record to the database. When executing the POST request, do not
+include the OrderId in the body of the request. The database will
+assign a unique OrderId automatically. The database will also handle adding a CreationDate automatically. All you are required to pass in upon Order creation is first and last name.
+- Example URL:
+http://localhost:5000/api/Order
+- Example POST Request:
+```
+{
+    "paymentTypeId": 1,
+    "customerId": 1,
+    "completedDate": "2018-01-29T00:00:00"
+}
+
+Example return: Assuming the newly created id is 18:
+ {
+    "orderId": 18,
+    "paymentTypeId": 1,
+    "customerId": 1,
+    "customer": null,
+    "completedDate": "2018-01-29T00:00:00"
+}
+
+```
+
+### PUT
+This method handles put requests for the Order. Users need to 
+provide a OrderId at the end of the url and send a full Order 
+object to complete the update.
+
+If successful, the return value will match the body of your PUT request.
+- Example URL:
+http://localhost:5000/api/Order/18
+- Example PUT Request:
+```
+{
+    "orderId": 18,
+    "paymentTypeId": 2,
+    "customerId": 1,
+    "completedDate": "2018-01-29T00:00:00"
+}
+```
+
+### DELETE
+This method handles DELETE requests for the Order records. Requires that the OrderId of the record to be erased be placed at the end of the URL.
+
+If successful, the object deleted will be returned.
+- Example URL:
+http://localhost:5000/api/Order/1
 
 
 ## Product
@@ -221,7 +323,7 @@ If successful, the object deleted will be returned.
 - Example URL:
 http://localhost:5000/api/Product/1
 
----------------------
+
 
 ## Customer
 Supports: GET, POST, PUT
