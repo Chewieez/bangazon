@@ -100,8 +100,103 @@ Supports: GET, POST, PUT
 ## Training Program
 Supports: GET, POST, PUT, DELETE (future start dates only)
 
+
+
 ## Computer Resources
 Supports: GET, POST, PUT, DELETE
+
+### GET
+This method will return an array containing all of the Computer records in the database.
+- Example URL: 
+ http://localhost:5000/api/Computer
+- Example Response:
+```
+[   
+    {
+        "computerId": 1,
+        "name": "Microsoft Surface Laptop",
+        "serialNumber": "11202",
+        "purchaseDate": "2017-01-23T00:00:00",
+        "decommissionDate": null
+    },
+    {
+        "computerId": 2,
+        "name": "Dell Inspiron 7000",
+        "serialNumber": "33319",
+        "purchaseDate": "2017-05-21T00:00:00",
+        "decommissionDate": null
+    }
+]
+```
+### GET Single Record
+Place the ComputerId at the end of the url to retrieve just that Computer record. 
+
+- Example URL:
+http://localhost:5000/api/Computer/1
+- Example Response:
+```
+{
+    "computerId": 1,
+    "name": "Microsoft Surface Laptop",
+    "serialNumber": "11202",
+    "purchaseDate": "2017-01-23T00:00:00",
+    "decommissionDate": null
+}
+```
+
+### POST
+This method handles post requests, which adds a
+record to the database. When executing the POST request, do not
+include the ComputerId in the body of the request. The database will
+assign a unique ComputerId automatically.
+- Example URL:
+http://localhost:5000/api/Computer
+- Example POST Request:
+```
+{
+    "name": "MacBook Air",
+    "serialNumber": "10688",
+    "purchaseDate": "2017-01-29T00:00:00",
+    "decommissionDate": null
+}
+
+Example return: Assuming the newly created id is 18:
+{
+    "computerId": 24,
+    "name": "MacBook Air",
+    "serialNumber": "10688",
+    "purchaseDate": "2017-01-29T00:00:00",
+    "decommissionDate": null
+}
+
+```
+
+### PUT
+This method handles put requests for the Computer. Users need to 
+provide a ComputerId at the end of the url and send a full Computer 
+object to complete the update.
+
+If successful, the return value will match the body of your PUT request.
+- Example URL:
+http://localhost:5000/api/Computer/18
+- Example PUT Request:
+```
+{
+    "computerId": 24,
+    "name": "MacBook Pro",
+    "serialNumber": "10688",
+    "purchaseDate": "2017-01-29T00:00:00",
+    "decommissionDate": null
+}
+```
+
+### DELETE
+This method handles DELETE requests for the Computer records. Requires that the ComputerId of the record to be erased be placed at the end of the URL.
+
+If successful, the object deleted will be returned.
+- Example URL:
+http://localhost:5000/api/Computer/1
+
 
 
 
@@ -162,7 +257,7 @@ http://localhost:5000/api/Order/1
 This method handles post requests, which adds a
 record to the database. When executing the POST request, do not
 include the OrderId in the body of the request. The database will
-assign a unique OrderId automatically. The database will also handle adding a CreationDate automatically. All you are required to pass in upon Order creation is first and last name.
+assign a unique OrderId automatically. 
 - Example URL:
 http://localhost:5000/api/Order
 - Example POST Request:
@@ -267,7 +362,7 @@ http://localhost:5000/api/Product/1
 This method handles post requests, which adds a
 record to the database. When executing the POST request, do not
 include the ProductId in the body of the request. The database will
-assign a unique ProductId automatically. The database will also handle adding a CreationDate automatically. All you are required to pass in upon Product creation is first and last name.
+assign a unique ProductId automatically.
 - Example URL:
 http://localhost:5000/api/Product
 - Example POST Request:

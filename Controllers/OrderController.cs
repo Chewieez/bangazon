@@ -195,12 +195,12 @@ namespace BangazonAPI.Controllers
             provide a full order object to complete the update.
             Example PUT Request:
             PUT /api/order/18
-            {
-                "orderId": 18,
-                "paymentTypeId": 2,
-                "customerId": 1,
-                "completedDate": "2018-01-29T00:00:00"
-            }
+        {
+            "orderId": 18,
+            "paymentTypeId": 2,
+            "customerId": 1,
+            "completedDate": "2018-01-29T00:00:00"
+        }
 
             If successful, the return value will match the body of your PUT request.
          */
